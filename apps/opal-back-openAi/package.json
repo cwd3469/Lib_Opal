@@ -5,13 +5,14 @@
     "main": "index.mjs",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "babel index.mjs -d dist",
+        "build": "babel app.js -d dist",
         "start": "npm run build && node dist/index.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "dotenv": "^16.4.5",
+        "express": "^4.19.2",
         "openai": "^4.56.0"
     },
     "devDependencies": {
