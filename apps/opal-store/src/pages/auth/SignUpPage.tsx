@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import { useTranslation } from 'react-i18next';
 
 const SignUpPage = () => {
+    const { t } = useTranslation('main');
     return (
         <Container>
-            <Title>회원가입</Title>
+            <Title>{t('test2')}</Title>
             <Description>
                 회원가입을 통해 다양한 혜택을 누리세요!
                 <br />
