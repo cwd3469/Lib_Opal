@@ -18,8 +18,7 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "types": ["react", "react-dom", "react-i18next"]
+        "noFallthroughCasesInSwitch": true
     },
     "include": ["src"]
 }
