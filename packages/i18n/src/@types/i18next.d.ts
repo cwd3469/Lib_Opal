@@ -1,4 +1,4 @@
-import { CustomResources, defaultNS } from '../shared/contents/locales/ko';
+import { CustomResources, defaultNS } from '../resource';
 
 declare module 'i18next' {
     interface CustomTypeOptions {

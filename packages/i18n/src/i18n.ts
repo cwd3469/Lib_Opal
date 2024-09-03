@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 
 import en from './locales/en';
 import ko from './locales/ko';
-import { defaultNS } from './locales';
+import { defaultNS } from './resource';
 
 const resources = {
     'en-US': en,
