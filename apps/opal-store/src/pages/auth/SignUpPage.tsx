@@ -1,73 +1,126 @@
 import styled from '@emotion/styled';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const SignUpPage = () => {
-    const { t } = useTranslation('main');
+    const { t, i18n } = useTranslation('signout');
+    const toggleLocales = useCallback(
+        (locale: string) => {
+            i18n.changeLanguage(locale);
+        },
+        [i18n]
+    );
+    const checked = i18n.language;
+
     return (
         <Container>
-            <Title>{t('description')}</Title>
-            <Description>
-                회원가입을 통해 다양한 혜택을 누리세요!
-                <br />
-                모든 필드를 정확히 입력해주세요.
-            </Description>
+            <fieldset style={{ borderWidth: 0, padding: 0 }}>
+                <label style={{ cursor: 'pointer' }}>
+                    <input
+                        type="radio"
+                        name="contact"
+                        value={'en-US'}
+                        checked={'en-US' === checked}
+                        onClick={() => toggleLocales('en-US')}
+                    />
+                    <span>영문</span>
+                </label>
+                {' / '}
+                <label style={{ cursor: 'pointer' }}>
+                    <input
+                        type="radio"
+                        name="contact"
+                        value={'ko-KR'}
+                        checked={'ko-KR' === checked}
+                        onClick={() => toggleLocales('ko-KR')}
+                    />
+                    <span>한글</span>
+                </label>
+            </fieldset>
+            <Title>{t('page-header-name')}</Title>
+            <Description>{t('page-header-description')}</Description>
+
             <form>
                 <FormGroup>
-                    <Label htmlFor="username">이름</Label>
-                    <Input type="text" id="username" name="username" placeholder="이름을 입력하세요" required />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="email">이메일</Label>
-                    <Input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="password">비밀번호</Label>
-                    <Input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required />
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="confirm-password">비밀번호 확인</Label>
+                    <Label htmlFor="username">{t('name-input-label')}</Label>
                     <Input
-                        type="password"
-                        id="confirm-password"
-                        name="confirm-password"
-                        placeholder="비밀번호를 다시 입력하세요"
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder={t('name-input-placeholder')}
                         required
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="phone">전화번호</Label>
-                    <Input type="tel" id="phone" name="phone" placeholder="전화번호를 입력하세요" required />
+                    <Label htmlFor="email">{t('email-input-label')}</Label>
+                    <Input type="email" id="email" name="email" placeholder={t('email-input-placeholder')} required />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="address">주소</Label>
-                    <Input type="text" id="address" name="address" placeholder="주소를 입력하세요" required />
+                    <Label htmlFor="password">{t('pw-input-label')}</Label>
+                    <Input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder={t('pw-input-placeholder')}
+                        required
+                    />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="gender">성별</Label>
+                    <Label htmlFor="confirm-password">{t('pwCheck-input-label')}</Label>
+                    <Input
+                        type="password"
+                        id="confirm-password"
+                        name="confirm-password"
+                        placeholder={t('pwCheck-input-placeholder')}
+                        required
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="phone">{t('phoneNumber-input-label')}</Label>
+                    <Input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder={t('phoneNumber-input-placeholder')}
+                        required
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="address">{t('address-input-label')}</Label>
+                    <Input
+                        type="text"
+                        id="address"
+                        name="address"
+                        placeholder={t('address-input-placeholder')}
+                        required
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="gender">{t('sex-input-label')}</Label>
                     <Select id="gender" name="gender" required>
-                        <option value="">성별을 선택하세요</option>
-                        <option value="male">남성</option>
-                        <option value="female">여성</option>
-                        <option value="other">기타</option>
+                        <option value="">{t('sex-input-placeholder')}</option>
+                        <option value="male">{t('sex-option-male')}</option>
+                        <option value="female">{t('sex-option-female')}</option>
+                        <option value="other">{t('sex-option-other')}</option>
                     </Select>
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="dob">생년월일</Label>
+                    <Label htmlFor="dob">{t('birthDay-input-label')}</Label>
                     <Input type="date" id="dob" name="dob" required />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="interests">관심사</Label>
-                    <Input type="text" id="interests" name="interests" placeholder="관심사를 입력하세요" />
+                    <Label htmlFor="interests">{t('interests-input-label')}</Label>
+                    <Input type="text" id="interests" name="interests" placeholder={t('interests-input-placeholder')} />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="country">국가</Label>
+                    <Label htmlFor="country">{t('country-input-label')}</Label>
                     <Select id="country" name="country" required>
-                        <option value="">국가를 선택하세요</option>
-                        <option value="kr">대한민국</option>
-                        <option value="us">미국</option>
-                        <option value="jp">일본</option>
-                        <option value="cn">중국</option>
-                        <option value="uk">영국</option>
+                        <option value="">{t('country-input-placeholder')}</option>
+                        <option value="kr">{t('country-option-kr')}</option>
+                        <option value="us">{t('country-option-us')}</option>
+                        <option value="jp">{t('country-option-jp')}</option>
+                        <option value="cn">{t('country-option-cn')}</option>
+                        <option value="uk">{t('country-option-uk')}</option>
                         {/* 추가적인 국가 옵션을 필요에 따라 추가하세요 */}
                     </Select>
                 </FormGroup>
@@ -104,6 +157,12 @@ const Description = styled.p`
 
 const FormGroup = styled.div`
     margin-bottom: 15px;
+`;
+
+const Box = styled.div`
+    display: flex;
+    gap: 6px;
+    justify-content: center;
 `;
 
 const Label = styled.label`

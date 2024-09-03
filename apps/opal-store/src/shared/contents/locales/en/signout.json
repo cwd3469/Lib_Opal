@@ -14,11 +14,19 @@
     "address-input-label": "Address",
     "address-input-placeholder": "Please enter your address",
     "sex-input-label": "Sex",
+    "sex-option-male": "Men",
+    "sex-option-female": "Women",
+    "sex-option-other": "Other",
     "sex-input-placeholder": "Please select a gender",
     "birthDay-input-label": "BirthDay",
     "birthDay-input-placeholder": "Please enter a name",
     "interests-input-label": "Interest",
     "interests-input-placeholder": "Please enter your interest.",
     "country-input-label": "Country",
-    "country-input-placeholder": "Please select your country."
+    "country-input-placeholder": "Please select your country.",
+    "country-option-kr": "Republic of Korea",
+    "country-option-us": "the United States",
+    "country-option-jp": "Japan",
+    "country-option-cn": "China",
+    "country-option-uk": "the United Kingdom"
 }
