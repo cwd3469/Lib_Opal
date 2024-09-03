@@ -5,7 +5,7 @@ const SignUpPage = () => {
     const { t } = useTranslation('main');
     return (
         <Container>
-            <Title>{t('test2')}</Title>
+            <Title>{t('title')}</Title>
             <Description>
                 회원가입을 통해 다양한 혜택을 누리세요!
                 <br />
