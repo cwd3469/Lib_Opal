@@ -106,6 +106,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.13.0
         version: 11.13.0(@emotion/react@11.13.3)(@types/react@18.3.5)(react@18.3.1)
+      i18n:
+        specifier: '*'
+        version: link:../../packages/i18n
       i18next:
         specifier: ^23.14.0
         version: 23.14.0
@@ -180,7 +183,7 @@ importers:
         specifier: ^5.5.4
         version: 5.5.4
 
-  packages/react-i18:
+  packages/i18n:
     dependencies:
       i18next:
         specifier: ^23.14.0
