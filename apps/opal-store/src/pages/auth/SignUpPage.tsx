@@ -159,12 +159,6 @@ const FormGroup = styled.div`
     margin-bottom: 15px;
 `;
 
-const Box = styled.div`
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-`;
-
 const Label = styled.label`
     display: block;
     margin-bottom: 5px;

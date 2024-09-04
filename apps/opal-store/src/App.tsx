@@ -1,5 +1,5 @@
 import SignUpPage from './pages/auth/SignUpPage';
-import './shared/contents/locales';
+import 'i18n/locales';
 
 const App = () => {
     return <SignUpPage />;
