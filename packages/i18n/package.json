@@ -10,9 +10,9 @@
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "localesBarrels": "node generatedBarrels",
-        "checkLocale": "node checkLocalFile.js",
-        "generatedLocales": "node generatedLocales.js"
+        "addNameSpace": "node generatedBarrels",
+        "addLanguage": "node generatedLocales.js",
+        "hasSameNameSpace": "node checkLocalFile.js"
     },
     "author": "",
     "license": "ISC",

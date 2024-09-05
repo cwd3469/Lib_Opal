@@ -1,4 +1,4 @@
-import ko from './locales/ko';
+import ko from './ko';
 
 export type CustomResources = typeof ko;
 
