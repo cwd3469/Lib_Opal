@@ -1,4 +1,5 @@
-export { default as about } from './about.json';
-export { default as font } from './font.json';
-export { default as main } from './main.json';
-export { default as signout } from './signout.json';
+import { default as about } from './about.json';
+import { default as font } from './font.json';
+import { default as main } from './main.json';
+import { default as signout } from './signout.json'; 
+export default { about, font, main, signout };
