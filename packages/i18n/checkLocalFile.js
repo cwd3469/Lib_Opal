@@ -27,17 +27,27 @@ directories.forEach((directory) => {
     }
 });
 
-const allEqual = keyList.every((val) => {
+let differenceList = [];
+
+let allEqual = true;
+
+for (let val of keyList) {
     if (JSON.stringify(val.keys) === JSON.stringify(keyList[0].keys)) {
-        return true;
+        allEqual = true;
     } else {
-        let difference = keyList[0].keys.filter((x) => !val.keys.includes(x));
-        difference.forEach((el) => console.error(`${el}: 서로 다른 값이 추가 되어 있습니다.`));
-        return false;
+        let difference = keyList[0].keys
+            .filter((x) => !val.keys.includes(x))
+            .concat(val.keys.filter((x) => !keyList[0].keys.includes(x)));
+
+        differenceList = [...differenceList, ...difference];
+
+        allEqual = false;
     }
-});
+}
 
 // 키 비교
 if (allEqual) {
     console.log('두 JSON 파일의 키 값이 동일합니다.');
+} else {
+    differenceList.forEach((el) => console.error(`${el}: 서로 다른 값이 추가 되어 있습니다.`));
 }
