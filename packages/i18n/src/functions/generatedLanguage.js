@@ -10,11 +10,11 @@ if (!fileName) {
 }
 
 // 폴더 복사
-async function generatedLocales() {
+async function generatedLanguage() {
     try {
-        await fx.copy(`./src/locales/ko`, `./src/locales/${fileName}`);
+        await fx.copy(`../locales/ko`, `../locales/${fileName}`);
 
-        const baseDirectory = path.join(__dirname, './src/locales');
+        const baseDirectory = path.join(__dirname, '../locales');
         const directories = fs.readdirSync(baseDirectory);
 
         const indexFilePath = path.join(baseDirectory, 'index.ts');
@@ -38,4 +38,4 @@ async function generatedLocales() {
         console.error('폴더 복사 중 오류가 발생했습니다:', err);
     }
 }
-generatedLocales();
+generatedLanguage();

@@ -1,13 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
-const generatedBarrels = () => {
+const generatedNameSpace = () => {
     // 명령줄에서 파일명을 가져옴 (예: node script.js example.txt)
-    const fileName = `${process.argv[2]}.json`;
+    const fileName = process.argv[2];
 
-    if (!fileName) {
+    if (typeof fileName === 'undefined') {
         console.error('파일명을 입력해주세요.');
         process.exit(1); // 오류 발생 시 프로그램 종료
+        return;
     }
 
     const contents = `{
@@ -15,7 +16,7 @@ const generatedBarrels = () => {
 }`;
 
     // 기준 경로 설정
-    const baseDirectory = path.join(__dirname, './src/locales');
+    const baseDirectory = path.join(__dirname, '../locales');
 
     try {
         // 디렉토리 내의 파일 및 디렉토리 목록을 가져옴
@@ -28,7 +29,7 @@ const generatedBarrels = () => {
                 // 디렉토리 내의 index.ts 경로 설정
                 const indexFilePath = path.join(directoryPath, './index.ts');
 
-                const newFilePath = path.join(directoryPath, fileName);
+                const newFilePath = path.join(directoryPath, `${fileName}.json`);
                 fs.writeFileSync(newFilePath, contents);
 
                 // 해당 디렉토리 내의 파일 목록 가져옴
@@ -65,4 +66,4 @@ const generatedBarrels = () => {
     }
 };
 
-generatedBarrels();
+generatedNameSpace();

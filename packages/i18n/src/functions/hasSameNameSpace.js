@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const checkLocalFile = () => {
+const hasSameNameSpace = () => {
     const fileName = `${process.argv[2]}.json`;
 
     if (!fileName) {
@@ -9,7 +9,7 @@ const checkLocalFile = () => {
         process.exit(1); // 오류 발생 시 프로그램 종료
     }
 
-    const baseDirectory = path.join(__dirname, './src/locales');
+    const baseDirectory = path.join(__dirname, '../locales');
 
     const directories = fs.readdirSync(baseDirectory);
 
@@ -54,4 +54,4 @@ const checkLocalFile = () => {
     }
 };
 
-checkLocalFile();
+hasSameNameSpace();

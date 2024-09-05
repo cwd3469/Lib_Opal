@@ -10,9 +10,9 @@
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "addNameSpace": "node ./src/functions/generatedBarrels.js",
-        "addLanguage": "node ./src/functions/generatedLocales.js",
-        "hasSameNameSpace": "node ./src/functions/checkLocalFile.js"
+        "addNameSpace": "node ./src/functions/generatedNameSpace.js",
+        "addLanguage": "node ./src/functions/generatedLanguage.js",
+        "hasSameNameSpace": "node ./src/functions/hasSameNameSpace.js"
     },
     "author": "",
     "license": "ISC",
