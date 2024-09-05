@@ -39,7 +39,6 @@ const SignUpPage = () => {
             </fieldset>
             <Title>{t('page-header-name')}</Title>
             <Description>{t('page-header-description')}</Description>
-
             <form>
                 <FormGroup>
                     <Label htmlFor="username">{t('name-input-label')}</Label>
