@@ -11,7 +11,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "localesBarrels": "node generatedBarrels",
-        "checkLocale": "node checkLocalFile.js"
+        "checkLocale": "node checkLocalFile.js",
+        "generatedLocales": "node generatedLocales.js"
     },
     "author": "",
     "license": "ISC",
