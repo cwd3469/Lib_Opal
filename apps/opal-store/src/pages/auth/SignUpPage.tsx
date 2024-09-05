@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 const SignUpPage = () => {
     const { t, i18n } = useTranslation('signout');
+    const langs = ['en-US', 'ko-KR'];
+
     const toggleLocales = useCallback(
         (locale: string) => {
             i18n.changeLanguage(locale);
@@ -15,27 +17,21 @@ const SignUpPage = () => {
     return (
         <Container>
             <fieldset style={{ borderWidth: 0, padding: 0 }}>
-                <label style={{ cursor: 'pointer' }}>
-                    <input
-                        type="radio"
-                        name="contact"
-                        value={'en-US'}
-                        checked={'en-US' === checked}
-                        onClick={() => toggleLocales('en-US')}
-                    />
-                    <span>영문</span>
-                </label>
-                {' / '}
-                <label style={{ cursor: 'pointer' }}>
-                    <input
-                        type="radio"
-                        name="contact"
-                        value={'ko-KR'}
-                        checked={'ko-KR' === checked}
-                        onClick={() => toggleLocales('ko-KR')}
-                    />
-                    <span>한글</span>
-                </label>
+                {langs.map((el) => {
+                    return (
+                        <label style={{ cursor: 'pointer' }} key={el}>
+                            <input
+                                type="radio"
+                                name="contact"
+                                value={el}
+                                checked={el === checked}
+                                onClick={() => toggleLocales(el)}
+                            />
+                            <span>{el}</span>
+                            {' / '}
+                        </label>
+                    );
+                })}
             </fieldset>
             <Title>{t('page-header-name')}</Title>
             <Description>{t('page-header-description')}</Description>
@@ -120,7 +116,6 @@ const SignUpPage = () => {
                         <option value="jp">{t('country-option-jp')}</option>
                         <option value="cn">{t('country-option-cn')}</option>
                         <option value="uk">{t('country-option-uk')}</option>
-                        {/* 추가적인 국가 옵션을 필요에 따라 추가하세요 */}
                     </Select>
                 </FormGroup>
                 <Button type="submit" value="회원가입" />
