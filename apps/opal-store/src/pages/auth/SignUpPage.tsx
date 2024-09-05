@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const SignUpPage = () => {
     const { t, i18n } = useTranslation('signout');
-    const langs = ['en-US', 'ko-KR'];
+    const langs = ['en', 'ko'];
 
     const toggleLocales = useCallback(
         (locale: string) => {

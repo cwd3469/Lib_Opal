@@ -6,22 +6,19 @@ import en from './locales/en';
 import ko from './locales/ko';
 import { defaultNS } from './resource';
 
-const resources = {
-    'en-US': en,
-    'ko-KR': ko,
-};
+const resources = { en, ko };
 
 i18n.use(LanguageDetector)
     .use(initReactI18next)
     .init({
-        lng: 'ko-KR',
+        lng: 'ko',
         debug: true,
         resources,
         defaultNS,
         detection: { order: ['path', 'navigator'] },
         fallbackLng: {
-            'en-US': ['en-US'],
-            default: ['ko-KR'],
+            en: ['en'],
+            default: ['ko'],
         },
     });
 
