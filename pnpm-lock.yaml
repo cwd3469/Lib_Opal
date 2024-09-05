@@ -188,6 +188,9 @@ importers:
       i18next:
         specifier: ^23.14.0
         version: 23.14.0
+      i18next-browser-languagedetector:
+        specifier: ^8.0.0
+        version: 8.0.0
       react-i18next:
         specifier: ^15.0.1
         version: 15.0.1(i18next@23.14.0)(react-dom@18.3.1)(react@18.3.1)
@@ -4615,6 +4618,12 @@ packages:
     resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
     dependencies:
       ms: 2.1.3
+    dev: false
+
+  /i18next-browser-languagedetector@8.0.0:
+    resolution: {integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==}
+    dependencies:
+      '@babel/runtime': 7.25.4
     dev: false
 
   /i18next-resources-for-ts@1.5.0:
