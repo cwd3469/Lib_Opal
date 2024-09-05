@@ -1,7 +1,4 @@
-import main from './main.json';
-import about from './about.json';
-import signout from './signout.json';
-
-const resource = { main, about, signout };
-
-export default resource;
+export { default as about } from './about.json';
+export { default as font } from './font.json';
+export { default as main } from './main.json';
+export { default as signout } from './signout.json';
