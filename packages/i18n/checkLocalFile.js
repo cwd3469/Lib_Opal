@@ -47,7 +47,7 @@ for (let val of keyList) {
 
 // 키 비교
 if (allEqual) {
-    console.log('두 JSON 파일의 키 값이 동일합니다.');
+    console.log('해당 JSON 파일의 키 값이 동일합니다.');
 } else {
     differenceList.forEach((el) => console.error(`${el}: 서로 다른 값이 추가 되어 있습니다.`));
 }
