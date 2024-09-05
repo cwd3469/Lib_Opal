@@ -35,6 +35,7 @@ try {
 
             // index.ts 파일에 추가할 export 문 생성
             let exportStatements = [];
+            let defaultArr = [];
 
             filesInDirectory.forEach((file) => {
                 const filePath = path.join(directoryPath, file);
@@ -42,13 +43,16 @@ try {
                 // 파일이 TypeScript 파일인지 확인하고 export 문 추가
                 if (fs.statSync(filePath).isFile() && file !== 'index.ts' && file.endsWith('.json')) {
                     const defaultName = file.replace('.json', '');
-                    exportStatements.push(`export { default as ${defaultName} } from './${file}';`);
+                    exportStatements.push(`import { default as ${defaultName} } from './${file}';`);
+                    defaultArr.push(defaultName);
                 }
             });
 
+            const indexJsContents = `${exportStatements.join('\n')} \nexport default { ${defaultArr.join(', ')} };`;
+
             // 새로운 index.ts 파일에 export 문 작성
             if (exportStatements.length > 0) {
-                fs.writeFileSync(indexFilePath, exportStatements.join('\n'));
+                fs.writeFileSync(indexFilePath, indexJsContents);
                 console.log(`${directory} 내 새로운 index.ts 파일이 생성되었습니다.`);
             } else {
                 console.log(`${directory} 내에는 export할 파일이 없습니다.`);
