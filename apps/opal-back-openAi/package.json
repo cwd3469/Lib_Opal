@@ -5,7 +5,7 @@
     "main": "index.mjs",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "babel app.js -d dist",
+        "build": "babel main.js -d dist",
         "start": "npm run build && node dist/index.js"
     },
     "author": "",
