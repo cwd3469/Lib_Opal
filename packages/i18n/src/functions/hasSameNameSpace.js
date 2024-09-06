@@ -7,6 +7,7 @@ const hasSameNameSpace = () => {
     if (!fileName) {
         console.error('파일명을 입력해주세요.');
         process.exit(1); // 오류 발생 시 프로그램 종료
+        return;
     }
 
     const baseDirectory = path.join(__dirname, '../locales');

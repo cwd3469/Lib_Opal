@@ -2,15 +2,15 @@ const fx = require('fs-extra');
 const fs = require('fs');
 const path = require('path');
 
-const fileName = process.argv[2];
-
-if (!fileName) {
-    console.error('파일명을 입력해주세요.');
-    process.exit(1); // 오류 발생 시 프로그램 종료
-}
-
 // 폴더 복사
 async function generatedLanguage() {
+    const fileName = process.argv[2];
+
+    if (!fileName) {
+        console.error('파일명을 입력해주세요.');
+        process.exit(1); // 오류 발생 시 프로그램 종료
+        return;
+    }
     try {
         await fx.copy(`../locales/ko`, `../locales/${fileName}`);
 
