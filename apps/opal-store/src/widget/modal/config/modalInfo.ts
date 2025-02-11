@@ -1,26 +1,29 @@
-import { ButtonProps } from "../../../shared/styles/ui/Button";
+import { ReactNode } from "react";
 
 export type ModalViewType = "alarm" | "alert" | "confirm";
 
-export interface AlarmModalProps {
+// type ModalBreakpoint = "lg" | "md" | "sm";
+type ModalPaletteKey = "primary" | "success" | "warning" | "error";
+
+export interface NonBtnModalProps {
   width?: string;
-  header: JSX.Element | string;
-  body: JSX.Element | string;
+  header: ReactNode;
+  body: ReactNode;
+  palette?: ModalPaletteKey;
   onClose: () => void;
 }
 
-export interface AlertModalProps extends AlarmModalProps {
-  leftBtn?: BtnType;
+export interface SingleBtnModalProps extends NonBtnModalProps {
+  leftBtnOnClick?: () => void;
+  leftBtnTitle?: string;
+  leftBtnDisabled?: boolean;
 }
 
-export interface ConfirmModalProps extends AlarmModalProps {
-  leftBtn?: BtnType;
-  rightBtn?: BtnType;
+export interface DoubleBtnModalProps extends NonBtnModalProps {
+  leftBtnOnClick?: () => void;
+  leftBtnTitle?: string;
+  leftBtnDisabled?: boolean;
+  rightBtnOnClick?: () => void;
+  rightBtnTitle?: string;
+  rightBtnDisabled?: boolean;
 }
-
-type BtnType = {
-  onClick?: () => void;
-  title?: string;
-  btnInfo?: ButtonProps;
-  disabled?: boolean;
-};

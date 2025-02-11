@@ -6,6 +6,7 @@ import { BreakpointValueKey } from "../../../shared/theme/config/size";
 declare module "@emotion/react" {
   export interface Theme {
     gap: BreakpointValueKey;
+    padding: BreakpointValueKey;
     radius: BreakpointValueKey;
     screens: BreakpointValueKey;
     typography: TypographyValueKey;

@@ -1,4 +1,4 @@
-import { AlarmModalProps } from "../config/modalInfo";
+import { NonBtnModalProps } from "../config/modalInfo";
 import { ModalPortal } from "./ModalPortal";
 import {
   Mask,
@@ -8,12 +8,7 @@ import {
   ModalHeader,
 } from "./ModalUiKit";
 
-export const AlarmModal = ({
-  header,
-  body,
-  width,
-  onClose,
-}: AlarmModalProps) => {
+const NonBtnModal = ({ width, header, body, onClose }: NonBtnModalProps) => {
   return (
     <ModalPortal>
       <Mask onClick={onClose} />
@@ -30,3 +25,4 @@ export const AlarmModal = ({
     </ModalPortal>
   );
 };
+export default NonBtnModal;

@@ -1,6 +1,6 @@
 import Button from "../../../shared/styles/ui/Button";
 import { ModalPortal } from "./ModalPortal";
-import { AlertModalProps } from "../config/modalInfo";
+import { SingleBtnModalProps } from "../config/modalInfo";
 import {
   Mask,
   MaskBody,
@@ -10,13 +10,16 @@ import {
   ModalHeader,
 } from "./ModalUiKit";
 
-export const AlertModal = ({
+const SingleBtnModal = ({
+  width,
   header,
   body,
-  width,
-  leftBtn,
+  palette,
   onClose,
-}: AlertModalProps) => {
+  leftBtnTitle,
+  leftBtnDisabled,
+  leftBtnOnClick,
+}: SingleBtnModalProps) => {
   return (
     <ModalPortal>
       <Mask onClick={onClose} />
@@ -30,13 +33,13 @@ export const AlertModal = ({
           {typeof body === "string" ? <ModalBody>{body}</ModalBody> : body}
           <ModalFooter>
             <Button
-              onClick={leftBtn?.onClick ? leftBtn?.onClick : onClose}
-              disabled={leftBtn?.disabled}
-              size={leftBtn?.btnInfo?.size ?? "sm"}
-              palette={leftBtn?.btnInfo?.palette ?? "primary"}
-              variant={leftBtn?.btnInfo?.variant ?? "contained"}
+              onClick={leftBtnOnClick ? leftBtnOnClick : onClose}
+              disabled={leftBtnDisabled}
+              size={"md"}
+              palette={palette ?? "primary"}
+              variant={"contained"}
             >
-              {leftBtn?.title ? leftBtn.title : "확인"}
+              {leftBtnTitle ? leftBtnTitle : "확인"}
             </Button>
           </ModalFooter>
         </MaskBodyContent>
@@ -44,3 +47,4 @@ export const AlertModal = ({
     </ModalPortal>
   );
 };
+export default SingleBtnModal;

@@ -10,6 +10,8 @@ import { loginErrorScheme } from "../config/loginErrorScheme";
 import Button from "../../../shared/styles/ui/Button";
 import TextFieldLabel from "../../../widget/textField/ui/TextFieldLabel";
 import PasswordTextField from "../../../widget/textField/ui/PasswordTextField";
+import { useAlert } from "../../../widget/confirm/model/useAlert";
+import { useNavigate } from "react-router-dom";
 
 type LoginInfo = {
   memberId: string;
@@ -17,6 +19,8 @@ type LoginInfo = {
 };
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -25,13 +29,23 @@ const LoginPage = () => {
     resolver: yupResolver(loginErrorScheme),
   });
 
+  const { showAlert } = useAlert();
+
   const onSubmit: SubmitHandler<LoginInfo> = (data) => {
     console.log(data);
+    showAlert({
+      title: "로그인 성공",
+      content: "로그인 성공하셨습니다. \n 해당 로그인 인증합니다.",
+      type: "success",
+      rightBtnOnClick() {
+        navigate("/main");
+      },
+    });
   };
 
   return (
     <Warper>
-      <Side>
+      <LoginForm onSubmit={handleSubmit(onSubmit)}>
         <TextFieldLabel
           label={LOGIN_PAGE_TEXT.ID_INPUT_LABEL}
           {...register("memberId", { required: true })}
@@ -47,10 +61,10 @@ const LoginPage = () => {
           message={errors.password?.message}
           type="password"
         />
-        <Button onClick={handleSubmit(onSubmit)} size="sm" palette="secondary">
+        <Button type="submit" size="sm" palette="secondary">
           로그인
         </Button>
-      </Side>
+      </LoginForm>
       <Side>
         <ImageBox>
           <img src={loginBg1} alt="loginBg" />
@@ -75,11 +89,15 @@ const Warper = styled.div`
   background-color: #fff;
   border: 1px solid #999;
 `;
-
-const Side = styled.div`
+const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 14px;
+  width: 50%;
+`;
+
+const Side = styled.div`
+  display: flex;
   width: 50%;
 `;
 

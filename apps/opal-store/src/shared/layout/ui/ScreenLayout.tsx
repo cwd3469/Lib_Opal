@@ -20,5 +20,5 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
 
-  background-color: aqua;
+  background-color: ${(props) => props.theme.palette.gray[100]};
 `;

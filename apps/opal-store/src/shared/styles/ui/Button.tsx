@@ -20,6 +20,7 @@ export type ButtonProps = {
   size?: Breakpoint;
   palette?: PaletteKey;
   variant?: Variant;
+  width?: string;
 };
 
 type ButtonColor = {
@@ -34,12 +35,19 @@ const Button = ({ size, palette, variant, ...props }: Props) => {
 
   const selectColor = paletteStyle[palette || "primary"];
   const mainColor = theme.palette[palette || "primary"][selectColor.main];
+
+  if (variant === "outlined") {
+    console.log(mainColor);
+    console.log(palette);
+  }
+
   const hoverColor = theme.palette[palette || "primary"][selectColor.hover];
 
   const rgba = mainColor ? hexToRgbaColor(mainColor, 0.04) : "#fff";
 
   const variantStyle: { [key in Variant]: string } = {
     contained: css`
+      border: 0px;
       background-color: ${mainColor};
       color: #fff;
       :hover {
@@ -56,6 +64,7 @@ const Button = ({ size, palette, variant, ...props }: Props) => {
       }
     `,
     text: css`
+      border: 0px;
       background-color: #fff;
       color: ${mainColor};
       :hover {
@@ -99,8 +108,8 @@ const ButtonStyle = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  border: 0px;
   cursor: pointer;
+  ${(props) => (props.width ? `width:${props.width}` : "")}
   &:disabled {
     color: #999; /* Gray text color */
     background-color: #f5f5f5; /* Light gray background */

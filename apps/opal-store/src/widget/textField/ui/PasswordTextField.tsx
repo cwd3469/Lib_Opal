@@ -24,7 +24,10 @@ const PasswordTextField = forwardRef<HTMLInputElement, Props>(
             inputWidth={"100%"}
             type={view ? "text" : "password"}
           />
-          <ViewPasswordButton onClick={() => setView((prev) => !prev)}>
+          <ViewPasswordButton
+            type="button"
+            onClick={() => setView((prev) => !prev)}
+          >
             <Checkmark src={view ? icViewOff : icViewOn} />
           </ViewPasswordButton>
         </Warper>
