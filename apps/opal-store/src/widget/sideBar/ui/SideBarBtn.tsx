@@ -30,19 +30,18 @@ const SideBarToggle = ({ name, icon: IconComponent, submenu }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const location = useLocation();
 
-  const handleToggleSubMenu = () => {
-    setOpen((prev) => !prev);
-  };
+  const handleToggleSubMenu = () => setOpen((prev) => !prev);
+  const submenuList = submenu?.map((el) => el.path);
 
-  const submenuList = submenu
-    ?.map((el) => el.path)
-    .filter((el) => typeof el === "string");
+  const subActive = submenuList?.includes(location.pathname);
 
-  const hasActive = submenuList?.includes(location.pathname) || open;
+  const hasActive = subActive ? subActive : open;
 
   useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
+    if (!subActive) {
+      setOpen(false);
+    }
+  }, [subActive]);
 
   return (
     <ToggleMenu className={hasActive ? `active` : undefined}>
@@ -53,7 +52,7 @@ const SideBarToggle = ({ name, icon: IconComponent, submenu }: Props) => {
         {IconComponent ? <IconComponent size={15} /> : null}
         {name}
       </SideBtn>
-      {open && (
+      {hasActive && (
         <SubMenu>
           {submenu?.map((el) => <SideBarBtn {...el} key={el.path} />)}
         </SubMenu>

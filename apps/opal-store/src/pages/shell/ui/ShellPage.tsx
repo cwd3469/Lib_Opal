@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 
-const MainPage = () => {
-  return <Wrapper>MainPage</Wrapper>;
+const ShellPage = () => {
+  return <Wrapper>SHELL</Wrapper>;
 };
 
-export default MainPage;
+export default ShellPage;
 
 const Wrapper = styled.div`
   width: 100%;

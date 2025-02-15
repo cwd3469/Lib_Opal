@@ -4,6 +4,7 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 import getMenu from "../config/getMenu";
 import SideBarBtn from "./SideBarBtn";
 import { FaCross } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 // 일반 , 리더 권한 , 수련회 리더 권한 , 운전자 사역 권한 ,임원 권한 , 사역자 권한
 
@@ -17,7 +18,9 @@ const SideBar = ({ logo, name }: Props) => {
   return (
     <Wrapper>
       <LogoComponent>
-        <Logo src={logo} alt="" />
+        <Link to={"/"}>
+          <Logo src={logo} alt="" />
+        </Link>
       </LogoComponent>
       <UserSection>
         <FaCross />

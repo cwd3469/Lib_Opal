@@ -5,6 +5,10 @@ import ScreenLayout from "./shared/layout/ui/ScreenLayout";
 import MainPage from "./pages/main/ui/MainPage";
 import PrivateLayout from "./shared/layout/ui/PrivateLayout";
 import { AuthInterface } from "./pages/main/config/interface";
+import MembershipPage from "./pages/membership/ui/MembershipPage";
+import DashboardPage from "./pages/dashboard/ui/DashboardPage";
+import ShellPage from "./pages/shell/ui/ShellPage";
+import RetreatParticipantsListPage from "./pages/retreatParticipantsList/ui/RetreatParticipantsListPage";
 
 function App() {
   const data: AuthInterface = {
@@ -21,12 +25,12 @@ function App() {
 
           <Route element={<PrivateLayout data={data} />}>
             <Route path="/" element={<MainPage />} />
-            <Route path="/membership" element={<>membership</>} />
-            <Route path="/dashboard" element={<>dashboard</>} />
-            <Route path="/shell" element={<>shell</>} />
+            <Route path="/membership" element={<MembershipPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/shell" element={<ShellPage />} />
             <Route
               path="/retreat/participants-list"
-              element={<>participants</>}
+              element={<RetreatParticipantsListPage />}
             />
           </Route>
         </Route>
