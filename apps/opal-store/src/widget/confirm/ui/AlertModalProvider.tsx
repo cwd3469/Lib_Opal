@@ -65,6 +65,7 @@ export const AlertProvider = ({ children }: Props) => {
           palette={alert.type}
           onClose={handleCloseAlert}
           rightBtnOnClick={handleRightBtnOnClick}
+          isOpen={false}
         />
       )}
     </AlertContext.Provider>

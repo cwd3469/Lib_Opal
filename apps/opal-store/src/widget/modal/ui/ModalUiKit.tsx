@@ -12,11 +12,12 @@ export const Mask = styled.div`
   height: 100%;
   background-color: #000000b2;
 `;
-export const MaskBody = styled.div`
+export const MaskBody = styled.div<{ zIndex?: string }>`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: ${(props) => props.zIndex ?? "10"};
 `;
 
 export const MaskBodyContent = styled.div<ModalBodyContentType>`

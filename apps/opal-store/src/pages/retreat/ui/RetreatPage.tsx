@@ -23,8 +23,7 @@ const RetreatPage = () => {
         수련회 개설
       </Button>
       <NonBtnModal
-        // isOpen={isOpen("create")}
-        isOpen={true}
+        isOpen={isOpen("create")}
         width="500px"
         header={"수련회 개설"}
         body={<RetreatCreateForm onClose={handleClose} />}
