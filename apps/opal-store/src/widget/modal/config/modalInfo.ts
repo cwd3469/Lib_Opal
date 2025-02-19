@@ -7,6 +7,7 @@ type ModalPaletteKey = "primary" | "success" | "warning" | "error";
 
 export interface NonBtnModalProps {
   width?: string;
+  isOpen: boolean;
   header: ReactNode;
   body: ReactNode;
   palette?: ModalPaletteKey;

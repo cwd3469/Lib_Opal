@@ -4,23 +4,13 @@ import styled from "@emotion/styled";
 import { ButtonHTMLAttributes } from "react";
 import { PaletteKey, PaletteListKey } from "../../theme/config/palette";
 import { hexToRgbaColor } from "../lib/rgba";
-
-/**
- * 
-  Small	sm	
-  Medium	md	
-  Large	lg	
- */
-
-type Breakpoint = "lg" | "md" | "sm";
-
-type Variant = "contained" | "outlined" | "text";
+import { Breakpoint, Variant } from "../interface/pointer";
 
 export type ButtonProps = {
   size?: Breakpoint;
   palette?: PaletteKey;
   variant?: Variant;
-  width?: string;
+  btnWidth?: string;
 };
 
 type ButtonColor = {
@@ -35,12 +25,6 @@ const Button = ({ size, palette, variant, ...props }: Props) => {
 
   const selectColor = paletteStyle[palette || "primary"];
   const mainColor = theme.palette[palette || "primary"][selectColor.main];
-
-  if (variant === "outlined") {
-    console.log(mainColor);
-    console.log(palette);
-  }
-
   const hoverColor = theme.palette[palette || "primary"][selectColor.hover];
 
   const rgba = mainColor ? hexToRgbaColor(mainColor, 0.04) : "#fff";
@@ -77,19 +61,22 @@ const Button = ({ size, palette, variant, ...props }: Props) => {
 
   const sizeStyle: { [key in Breakpoint]: string } = {
     lg: css`
-      min-width: 139px;
-      padding: 22px 44px;
-      ${theme.typography.L1_Label_20_B};
+      padding: 10px 20px;
+      border-radius: ${theme.radius.lg};
+      ${theme.typography.L4_Label_16_M};
+      line-height: 1.2;
     `,
     md: css`
-      min-width: 121px;
-      padding: 18px 40px;
-      ${theme.typography.L3_Label_16_B};
+      padding: 9px 20px;
+      border-radius: ${theme.radius.md};
+      ${theme.typography.L5_Label_14_M};
+      line-height: 1.2;
     `,
     sm: css`
-      min-width: 83px;
-      padding: 12px 24px;
-      ${theme.typography.L5_Label_14_M};
+      padding: 6px 12px;
+      border-radius: ${theme.radius.sm};
+      ${theme.typography.L6_Label_12_M};
+      line-height: 1.2;
     `,
   };
 
@@ -107,9 +94,8 @@ const ButtonStyle = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
   cursor: pointer;
-  ${(props) => (props.width ? `width:${props.width}` : "")}
+  width: ${(props) => (props.btnWidth ? `${props.btnWidth}` : "auto")};
   &:disabled {
     color: #999; /* Gray text color */
     background-color: #f5f5f5; /* Light gray background */
@@ -145,7 +131,7 @@ const paletteStyle: { [key in PaletteKey]: ButtonColor } = {
     hover: "500",
   },
   gray: {
-    main: "400",
+    main: "600",
     hover: "700",
   },
   white: {

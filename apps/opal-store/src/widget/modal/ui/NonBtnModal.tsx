@@ -8,7 +8,14 @@ import {
   ModalHeader,
 } from "./ModalUiKit";
 
-const NonBtnModal = ({ width, header, body, onClose }: NonBtnModalProps) => {
+const NonBtnModal = ({
+  width,
+  isOpen,
+  header,
+  body,
+  onClose,
+}: NonBtnModalProps) => {
+  if (!isOpen) return <></>;
   return (
     <ModalPortal>
       <Mask onClick={onClose} />

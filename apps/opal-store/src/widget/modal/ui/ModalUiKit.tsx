@@ -20,24 +20,22 @@ export const MaskBody = styled.div`
 `;
 
 export const MaskBodyContent = styled.div<ModalBodyContentType>`
-  background-color: white;
-  padding: 1rem;
+  width: ${(props) => (props.width ? props.width : "320px")};
   height: auto;
-  width: ${(props: ModalBodyContentType) =>
-    props.width ? props.width : "320px"};
-  border-radius: var(--RadiusLG, 8px);
-  padding: 24px;
+
   display: flex;
   flex-direction: column;
   gap: 8px;
+  border-radius: ${(props) => props.theme.radius.xsm};
+  padding: ${(props) => props.theme.padding.xxxl};
+
+  background-color: white;
 `;
 
 export const ModalHeader = styled.div`
-  color: var(--TrueGray-Gray800, #484848);
+  color: ${(props) => props.theme.palette.gray[900]};
   text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px; /* 150% */
+  ${(props) => props.theme.typography.B6_Body_14_SB}
 `;
 
 export const ModalBody = styled.div`
@@ -57,6 +55,7 @@ export const ModalFooter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--RadiusLG, 8px);
+  gap: ${(props) => props.theme.gap.xl};
   align-self: stretch;
+  padding-top: ${(props) => props.theme.padding.lg};
 `;

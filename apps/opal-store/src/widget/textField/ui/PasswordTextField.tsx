@@ -1,15 +1,13 @@
 import styled from "@emotion/styled";
 import { forwardRef, InputHTMLAttributes, useState } from "react";
-import { DefaultTextField } from "./DefaultTextField";
+import { DefaultTextField, DefaultTextFieldProps } from "./DefaultTextField";
 import icViewOff from "../asset/icViewOff.svg";
 import icViewOn from "../asset/icViewOn.svg";
-import TextFieldFieldset from "./TextFieldFieldset";
+import TextFieldFieldset, { TextFieldFieldsetProps } from "./TextFieldFieldset";
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
-  message?: string;
-  state?: string;
-  label?: string;
-};
+type Props = InputHTMLAttributes<HTMLInputElement> &
+  DefaultTextFieldProps &
+  TextFieldFieldsetProps;
 
 const PasswordTextField = forwardRef<HTMLInputElement, Props>(
   ({ label, state, message, ...props }, ref) => {

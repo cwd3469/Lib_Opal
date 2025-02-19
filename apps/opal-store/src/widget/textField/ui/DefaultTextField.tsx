@@ -1,22 +1,38 @@
 import styled from "@emotion/styled";
+import { Breakpoint } from "../../../shared/styles/interface/pointer";
 
-type Props = {
+import { css } from "@emotion/react";
+
+export type DefaultTextFieldProps = {
+  inputSize?: Breakpoint;
   inputWidth?: string;
 };
 
-export const DefaultTextField = styled.input<Props>`
+export const DefaultTextField = styled.input<DefaultTextFieldProps>`
   //layout
-  display: flex;
-  padding: 12px 16px;
-  //font
-  font-size: 14px;
-  line-height: 18px;
-  //style
-  border-radius: var(--Radius_MD, 6px);
-  border: 1px solid var(--CoolGray-CoolGray300, #b4bfc8);
-  background-color: var(--TrueGray-White, #fff);
-  box-sizing: border-box;
   width: ${(props) => props.inputWidth};
+
+  ${(props) =>
+    props.inputSize === "lg"
+      ? css`
+          padding: 10px 8px;
+        `
+      : props.inputSize === "md"
+        ? css`
+            padding: 8px 6px;
+          `
+        : props.inputSize === "sm"
+          ? css`
+              padding: 6px 4px;
+            `
+          : ""}
+  ${(props) => props.theme.typography.B9_Body_12_M};
+  //style
+  border-radius: ${(props) => props.theme.radius.sm};
+  border: 1px solid ${(props) => props.theme.palette.gray[500]};
+  background-color: ${(props) => props.theme.palette.white[100]};
+  box-sizing: border-box;
+
   &::placeholder {
     color: var(--CoolGray-CoolGray400, #9aa9b7);
     font-weight: 400;

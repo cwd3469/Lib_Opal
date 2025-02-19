@@ -1,18 +1,21 @@
 import { forwardRef, InputHTMLAttributes } from "react";
 
-import { DefaultTextField } from "./DefaultTextField";
-import TextFieldFieldset from "./TextFieldFieldset";
+import { DefaultTextField, DefaultTextFieldProps } from "./DefaultTextField";
+import TextFieldFieldset, { TextFieldFieldsetProps } from "./TextFieldFieldset";
 
-type Props = InputHTMLAttributes<HTMLInputElement> & {
-  message?: string;
-  state?: string;
-  label?: string;
-};
+type Props = InputHTMLAttributes<HTMLInputElement> &
+  DefaultTextFieldProps &
+  TextFieldFieldsetProps;
 
 const TextFieldLabel = forwardRef<HTMLInputElement, Props>(
-  ({ label, state, message, ...props }, ref) => {
+  ({ label, state, message, isRequire, ...props }, ref) => {
     return (
-      <TextFieldFieldset label={label} state={state} message={message}>
+      <TextFieldFieldset
+        label={label}
+        state={state}
+        message={message}
+        isRequire={isRequire}
+      >
         <DefaultTextField ref={ref} {...props} />
       </TextFieldFieldset>
     );

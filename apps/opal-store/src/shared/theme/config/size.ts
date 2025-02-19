@@ -7,21 +7,21 @@ export type BreakpointValueKey = {
 const padding = {
   xsm: "2px",
   sm: "4px",
-  md: "8px",
-  lg: "12px",
-  xl: "16px",
-  xxl: "20px",
-  xxxl: "20px",
+  md: "6px",
+  lg: "8px",
+  xl: "10px",
+  xxl: "12px",
+  xxxl: "14px",
 };
 
 const gap: BreakpointValueKey = {
   xsm: "2px",
   sm: "4px",
-  md: "8px",
-  lg: "12px",
-  xl: "16px",
-  xxl: "20px",
-  xxxl: "20px",
+  md: "6px",
+  lg: "8px",
+  xl: "10px",
+  xxl: "12px",
+  xxxl: "14px",
 };
 
 const radius: BreakpointValueKey = {
@@ -29,9 +29,9 @@ const radius: BreakpointValueKey = {
   sm: "4px",
   md: "6px",
   lg: "8px",
-  xl: "16px",
-  xxl: "24px",
-  xxxl: "24px",
+  xl: "10px",
+  xxl: "12px",
+  xxxl: "14px",
 };
 
 const screens: BreakpointValueKey = {

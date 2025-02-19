@@ -8,7 +8,7 @@ import { AuthInterface } from "./pages/main/config/interface";
 import MembershipPage from "./pages/membership/ui/MembershipPage";
 import DashboardPage from "./pages/dashboard/ui/DashboardPage";
 import ShellPage from "./pages/shell/ui/ShellPage";
-import RetreatParticipantsListPage from "./pages/retreatParticipantsList/ui/RetreatParticipantsListPage";
+import RetreatPage from "./pages/retreat/ui/RetreatPage";
 
 function App() {
   const data: AuthInterface = {
@@ -28,10 +28,7 @@ function App() {
             <Route path="/membership" element={<MembershipPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/shell" element={<ShellPage />} />
-            <Route
-              path="/retreat/participants-list"
-              element={<RetreatParticipantsListPage />}
-            />
+            <Route path="/retreat" element={<RetreatPage />} />
           </Route>
         </Route>
       </Routes>

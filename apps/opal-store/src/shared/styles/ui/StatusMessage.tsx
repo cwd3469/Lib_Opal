@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 
 export const ErrorStatusMessage = styled.div`
-  color: var(--Function-Red_Default, #f15050);
+  color: ${(props) => props.theme.palette.error[500]};
   ${(props) => props.theme.typography.B10_Body_12_R}
+  line-height: 1;
 `;
 
 export const SuccessStatusMessage = styled.div`
-  color: var(--Function-Green_Dark, #109138);
+  color: ${(props) => props.theme.palette.success[400]};
   ${(props) => props.theme.typography.B10_Body_12_R}
+  line-height: 1;
 `;

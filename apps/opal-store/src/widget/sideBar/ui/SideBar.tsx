@@ -94,7 +94,6 @@ const Logo = styled.img`
 
 const LogoComponent = styled.div`
   padding: ${(props) => props.theme.padding.sm} 0;
-  border-top: solid 1px ${(props) => props.theme.palette.gray[300]};
 `;
 
 const Footer = styled.div`

@@ -12,6 +12,7 @@ import {
 
 const DoubleBtnModal = ({
   width,
+  isOpen,
   header,
   body,
   palette,
@@ -23,6 +24,7 @@ const DoubleBtnModal = ({
   rightBtnDisabled,
   rightBtnOnClick,
 }: DoubleBtnModalProps) => {
+  if (!isOpen) return <></>;
   return (
     <ModalPortal>
       <Mask onClick={onClose} />
@@ -48,7 +50,7 @@ const DoubleBtnModal = ({
               onClick={rightBtnOnClick ? rightBtnOnClick : onClose}
               disabled={rightBtnDisabled}
               size={"sm"}
-              palette={palette ?? "primary"}
+              palette={palette ?? "gray"}
               variant={"contained"}
             >
               {rightBtnTitle ? rightBtnTitle : "확인"}

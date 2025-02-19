@@ -12,6 +12,7 @@ import {
 
 const SingleBtnModal = ({
   width,
+  isOpen,
   header,
   body,
   palette,
@@ -20,6 +21,7 @@ const SingleBtnModal = ({
   leftBtnDisabled,
   leftBtnOnClick,
 }: SingleBtnModalProps) => {
+  if (!isOpen) return <></>;
   return (
     <ModalPortal>
       <Mask onClick={onClose} />

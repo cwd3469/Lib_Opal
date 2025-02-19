@@ -4,7 +4,6 @@ import { IoMan } from "react-icons/io5";
 import { MdDashboardCustomize } from "react-icons/md";
 import { MdGroup } from "react-icons/md";
 import { FaCampground } from "react-icons/fa6";
-import { FaListUl } from "react-icons/fa";
 
 export interface Menu {
   name: string;
@@ -33,15 +32,9 @@ const getMenu: Menu[] = [
     permissions: "EDUCATORS",
   },
   {
-    name: "수련회 참석자 관리",
+    name: "수련회",
     icon: FaCampground,
-    submenu: [
-      {
-        name: "수련회 참석자 명단",
-        path: "/retreat/participants-list",
-        icon: FaListUl,
-      },
-    ],
+    path: "/retreat",
   },
 ];
 

@@ -36,7 +36,11 @@ const Wrapper = styled.div`
   grid-template-columns: auto 1fr; /* 왼쪽 크기(auto)에 따라 오른쪽 자동 조절 */
   grid-template-rows: auto 1fr; /* 위쪽 자동 높이, 아래쪽 가변 높이 */
 
-  background-color: #cecece;
+  background-color: ${(props) => props.theme.palette.gray[100]};
+
+  box-shadow:
+    rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 
   @media (max-width: 1920px) {
     width: 100%;
