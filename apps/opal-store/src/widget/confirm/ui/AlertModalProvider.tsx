@@ -31,7 +31,9 @@ export const AlertProvider = ({ children }: Props) => {
 
   const [alert, setAlert] = useState<Alert | null>(null);
 
-  const showAlert = useCallback((params: Alert) => setAlert(params), []);
+  const showAlert = useCallback((params: Alert) => {
+    setAlert(params);
+  }, []);
 
   const handleCloseAlert = useCallback(() => setAlert(null), []);
 
@@ -45,6 +47,7 @@ export const AlertProvider = ({ children }: Props) => {
       {children}
       {alert && (
         <DoubleBtnModal
+          zIndex="99999"
           header={
             <AlertHeader>
               {alert.type === "error" ? (
@@ -65,7 +68,7 @@ export const AlertProvider = ({ children }: Props) => {
           palette={alert.type}
           onClose={handleCloseAlert}
           rightBtnOnClick={handleRightBtnOnClick}
-          isOpen={false}
+          isOpen={true}
         />
       )}
     </AlertContext.Provider>

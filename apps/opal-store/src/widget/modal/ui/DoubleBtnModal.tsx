@@ -12,6 +12,7 @@ import {
 
 const DoubleBtnModal = ({
   width,
+  zIndex,
   isOpen,
   header,
   body,
@@ -28,7 +29,7 @@ const DoubleBtnModal = ({
   return (
     <ModalPortal>
       <Mask onClick={onClose} />
-      <MaskBody>
+      <MaskBody zIndex={zIndex}>
         <MaskBodyContent width={width}>
           {typeof header === "string" ? (
             <ModalHeader>{header}</ModalHeader>

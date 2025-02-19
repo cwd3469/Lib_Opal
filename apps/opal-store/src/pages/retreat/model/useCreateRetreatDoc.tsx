@@ -14,6 +14,11 @@ const useCreateRetreatDoc = () => {
     mutationFn: createRetreatDoc,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKey.retreat });
+      showAlert({
+        type: "success",
+        title: "수련회 개설 성공",
+        content: "firebase",
+      });
     },
     onError(error) {
       console.log(error);

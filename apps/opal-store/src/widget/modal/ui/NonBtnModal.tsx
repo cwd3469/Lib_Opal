@@ -13,13 +13,14 @@ const NonBtnModal = ({
   isOpen,
   header,
   body,
+  zIndex,
   onClose,
 }: NonBtnModalProps) => {
   if (!isOpen) return <></>;
   return (
     <ModalPortal>
       <Mask onClick={onClose} />
-      <MaskBody>
+      <MaskBody zIndex={zIndex}>
         <MaskBodyContent width={width}>
           {typeof header === "string" ? (
             <ModalHeader>{header}</ModalHeader>
