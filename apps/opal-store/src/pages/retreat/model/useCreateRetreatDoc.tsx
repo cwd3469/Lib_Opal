@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createRetreatDoc } from "./api/list";
-import queryKey from "../../../shared/config/queryKey";
+import QueryKey from "../../../shared/config/QueryKey";
 import { useAlert } from "../../../widget/confirm/model/useAlert";
 
 /**
@@ -13,7 +13,7 @@ const useCreateRetreatDoc = () => {
   return useMutation({
     mutationFn: createRetreatDoc,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: queryKey.retreat });
+      queryClient.invalidateQueries({ queryKey: QueryKey.RETREAT });
       showAlert({
         type: "success",
         title: "수련회 개설 성공",

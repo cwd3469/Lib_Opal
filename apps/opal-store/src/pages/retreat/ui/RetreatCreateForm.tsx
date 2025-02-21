@@ -35,7 +35,6 @@ const RetreatCreateForm = ({ onClose }: Props) => {
   };
 
   const handleRetreatCreate = handleSubmit((value) => {
-    console.log(value);
     createRetreatDocMutate.mutate(value, {
       onSuccess: onClose,
     });

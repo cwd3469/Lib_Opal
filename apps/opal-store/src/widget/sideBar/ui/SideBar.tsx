@@ -50,8 +50,8 @@ const Wrapper = styled.div`
   padding: 0 ${(props) => props.theme.padding.sm};
 
   background-color: ${(props) => props.theme.palette.gray[100]};
-  border-right: 1px solid ${(props) => props.theme.palette.gray[100]};
-
+  border-right: 1px solid ${(props) => props.theme.palette.gray[300]};
+  border-left: 1px solid ${(props) => props.theme.palette.gray[300]};
   @media (max-width: 1020px) {
     width: 50px;
   }

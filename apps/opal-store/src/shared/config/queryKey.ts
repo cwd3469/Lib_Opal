@@ -1,5 +1,6 @@
-const queryKey = {
-  retreat: ["retreat"],
+const QueryKey = {
+  RETREAT: ["retreat"],
+  RETREAT_DETAIL: (id?: string) => ["retreatDetail", id],
 };
 
-export default queryKey;
+export default QueryKey;

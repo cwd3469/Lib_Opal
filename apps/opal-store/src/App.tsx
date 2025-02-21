@@ -1,14 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import LoginPage from "./pages/login/ui/LoginPage";
-import ScreenLayout from "./shared/layout/ui/ScreenLayout";
+
 import MainPage from "./pages/main/ui/MainPage";
-import PrivateLayout from "./shared/layout/ui/PrivateLayout";
 import { AuthInterface } from "./pages/main/config/interface";
 import MembershipPage from "./pages/membership/ui/MembershipPage";
 import DashboardPage from "./pages/dashboard/ui/DashboardPage";
 import ShellPage from "./pages/shell/ui/ShellPage";
 import RetreatPage from "./pages/retreat/ui/RetreatPage";
+import RetreatDetailPage from "./pages/retreatDetail/ui/RetreatDetailPage";
+
+import ScreenLayout from "./shared/layout/ui/ScreenLayout";
+import PrivateLayout from "./shared/layout/ui/PrivateLayout";
+import Path from "./shared/config/path";
 
 function App() {
   const data: AuthInterface = {
@@ -24,11 +28,17 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
 
           <Route element={<PrivateLayout data={data} />}>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/membership" element={<MembershipPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/shell" element={<ShellPage />} />
-            <Route path="/retreat" element={<RetreatPage />} />
+            <Route path={Path.MAIN} element={<MainPage />} />
+            <Route path={Path.MEMBERSHIP} element={<MembershipPage />} />
+            <Route path={Path.DASHBOARD} element={<DashboardPage />} />
+            <Route path={Path.SHELLll} element={<ShellPage />} />
+            <Route path={Path.RETREAT}>
+              <Route index element={<RetreatPage />} />
+              <Route
+                path={`${Path.RETREAT_DETAIL}/:id`}
+                element={<RetreatDetailPage />}
+              />
+            </Route>
           </Route>
         </Route>
       </Routes>

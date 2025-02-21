@@ -1,40 +1,18 @@
-import { CSSProperties, ReactNode } from "react";
-
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-
-interface TableHeaderProps {
-  children: ReactNode;
-  rowStyle?: CSSProperties;
-}
 
 type Alignment = "center" | "start" | "end";
 
-function TableHeader({ children, rowStyle }: Readonly<TableHeaderProps>) {
-  return (
-    <TableHeaderWrapper>
-      <TableHeaderRow style={rowStyle}>{children}</TableHeaderRow>
-    </TableHeaderWrapper>
-  );
-}
-
-const TableHeaderWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  align-self: stretch;
-
-  border-bottom: 1px solid var(--gray-cool-100, #e6eaec);
-`;
-
-const TableHeaderRow = styled.div`
+const TableHeader = styled.div`
   display: flex;
   width: 100%;
-  height: 40px;
   align-items: center;
   align-self: stretch;
 
   color: var(--gray-cool-700, #4e5962);
   ${(props) => props.theme.typography.L3_Label_16_B}
+  border-top: 1px solid ${(props) => props.theme.palette.gray[200]};
+  border-bottom: 1px solid ${(props) => props.theme.palette.gray[200]};
+  background-color: #fff;
 `;
 
 const HeaderCell = styled.div<{ width: string; alignment?: Alignment }>`
@@ -42,25 +20,18 @@ const HeaderCell = styled.div<{ width: string; alignment?: Alignment }>`
   width: ${({ width }) => width};
   justify-content: center;
   align-items: center;
-  gap: var(--radius-lg, 8px);
+  gap: 8px;
+  padding: 6px;
 
-  ${({ alignment = "center" }) => {
-    switch (alignment) {
-      case "start":
-        return css`
-          padding: 0px 8px;
-        `;
-      case "center":
-        return css`
-          padding: 0px;
-        `;
-      case "end":
-        return css`
-          padding-right: 16px;
-        `;
-    }
-  }};
-  flex: ${({ width }) => (width !== "100%" ? "0 1 auto" : "1 0 0")};
+  background-color: ${(props) => props.theme.palette.gray[600]};
+  color: ${(props) => props.theme.palette.white[100]};
+
+  ${(props) => props.theme.typography.L6_Label_12_M}
+
+  border-left: 1px solid ${(props) => props.theme.palette.gray[200]};
+  :last-child {
+    border-right: 1px solid ${(props) => props.theme.palette.gray[200]};
+  }
 `;
 
 export { TableHeader, HeaderCell };
