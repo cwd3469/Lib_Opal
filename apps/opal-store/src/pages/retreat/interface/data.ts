@@ -4,9 +4,12 @@ export interface RetreatReq extends RetreatCreateFormInfo {
 
 export type RetreatCreateFormInfo = {
   retreatTitle: string;
-  retreatContents?: string;
+  retreatContents: string;
   retreatPlace: string;
-  retreatInstructor: string;
   retreatStartAt: string;
   retreatEndAt: string;
+  retreatInstructor?: string;
+  retreatInstructorEmail?: string;
+  retreatInstructorMinistry?: string;
+  retreatInstructorPhoneNumber?: string;
 };

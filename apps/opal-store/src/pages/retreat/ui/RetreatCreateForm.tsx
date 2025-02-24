@@ -44,7 +44,7 @@ const RetreatCreateForm = ({ onClose }: Props) => {
     <BasicForm onSubmit={handleRetreatCreate}>
       <TextFieldLabel
         {...register("retreatTitle")}
-        label="수련회 주제"
+        label="수련회 제목"
         inputSize="sm"
         isRequire
         message={errors.retreatTitle?.message}
@@ -52,8 +52,11 @@ const RetreatCreateForm = ({ onClose }: Props) => {
       />
       <TextFieldLabel
         {...register("retreatContents")}
-        label="부주제"
+        label="수련회 주제"
         inputSize="sm"
+        isRequire
+        message={errors.retreatContents?.message}
+        state="error"
       />
 
       <TextFieldLabel
@@ -86,9 +89,21 @@ const RetreatCreateForm = ({ onClose }: Props) => {
         {...register("retreatInstructor")}
         label="초청 강사"
         inputSize="sm"
-        isRequire
-        message={errors.retreatInstructor?.message}
-        state="error"
+      />
+      <TextFieldLabel
+        {...register("retreatInstructorEmail")}
+        label="초청 강사 이메일"
+        inputSize="sm"
+      />
+      <TextFieldLabel
+        {...register("retreatInstructorMinistry")}
+        label="초청 강사 사역지"
+        inputSize="sm"
+      />
+      <TextFieldLabel
+        {...register("retreatInstructorPhoneNumber")}
+        label="초청 강사 연락처"
+        inputSize="sm"
       />
       <ModalFooter>
         <Button
