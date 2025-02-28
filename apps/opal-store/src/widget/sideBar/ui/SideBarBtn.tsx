@@ -13,7 +13,7 @@ const SideBarLinkBtn = ({ path, name, icon: IconComponent }: Props) => {
     if (path) navigate(path);
   };
 
-  const hasActive = location.pathname === path;
+  const hasActive = location.pathname === `/${path}`;
 
   return (
     <SideBtn
@@ -31,7 +31,8 @@ const SideBarToggle = ({ name, icon: IconComponent, submenu }: Props) => {
   const location = useLocation();
 
   const handleToggleSubMenu = () => setOpen((prev) => !prev);
-  const submenuList = submenu?.map((el) => el.path);
+
+  const submenuList = submenu?.map((el) => `/${el.path}`);
 
   const subActive = submenuList?.includes(location.pathname);
 
@@ -41,7 +42,7 @@ const SideBarToggle = ({ name, icon: IconComponent, submenu }: Props) => {
     if (!subActive) {
       setOpen(false);
     }
-  }, [subActive]);
+  }, [subActive, location.pathname]);
 
   return (
     <ToggleMenu className={hasActive ? `active` : undefined}>
