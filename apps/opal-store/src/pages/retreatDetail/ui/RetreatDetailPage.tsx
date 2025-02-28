@@ -11,9 +11,13 @@ import Table from "../../../widget/table/ui/Table";
 import { HeaderCell, TableHeader } from "../../../widget/table/ui/TableHeader";
 import TableBody from "../../../widget/table/ui/TableBody";
 
-import useKakaoLoader from "../../../shared/map/useKakaoLoader";
-
 import CustomKakaoLoader from "../../../shared/map/CustomKakaoLoader";
+import NonBtnModal from "../../../widget/modal/ui/NonBtnModal";
+import RetreatInputForm from "../../retreat/ui/RetreatInputForm";
+import useModal from "../../../widget/modal/model/useModal";
+import { RetreatInputFormInfo } from "../../retreat/interface/data";
+
+type ModalText = "delete" | "modify";
 
 const TABLE_INFO = {
   date: "30%",
@@ -21,8 +25,11 @@ const TABLE_INFO = {
   term: "20%",
 };
 
-const data = {
-  image: [
+const MODIFY_NAME = "수련회 수정";
+const DELETE_NAME = "수련회 삭제";
+
+const data: RetreatInputFormInfo = {
+  retreatImage: [
     // "https://cdn.pixabay.com/photo/2020/08/14/16/48/chocolate-5488493_1280.jpg",
     // "https://cdn.pixabay.com/photo/2015/06/01/09/00/adwords-793034_1280.jpg",
   ],
@@ -47,48 +54,55 @@ const RetreatDetailPage = () => {
   // const { id: retreatId } = useParams();
   // const { data } = useGetRetreatDetailDoc(retreatId);
   // const { handleFileChange } = useFileUpload();
-  useKakaoLoader();
+  const { isOpen, openModal, closeModal } = useModal<ModalText>();
 
   return (
-    <Wrapper>
-      <Box>
-        {data.image.length === 0 ? (
-          <NonImage />
-        ) : (
-          <PostSlideBox>
-            {data.image.length === 1 ? (
-              <PostImage src={data.image[0]} />
-            ) : (
-              <CustomSwiper>
-                {data.image.map((el) => {
-                  return <PostImage src={el} key={el} />;
-                })}
-              </CustomSwiper>
-            )}
-          </PostSlideBox>
-        )}
-      </Box>
-      <Box>
-        <ButtonBox>
-          <Button size={"sm"} variant="outlined" palette="gray">
-            수련회 삭제
-          </Button>
-          <Button size={"sm"} variant="outlined" palette="gray">
-            수련회 수정
-          </Button>
-          <Button size={"sm"} variant="outlined" palette="gray">
-            수련회 신청서 등록
-          </Button>
-        </ButtonBox>
-        <SubscriberTableContainer>
-          <Table>
-            <TableHeader>
-              <HeaderCell width={TABLE_INFO.date}>{"신청날짜"}</HeaderCell>
-              <HeaderCell width={TABLE_INFO.name}>{"이름"}</HeaderCell>
-              <HeaderCell width={TABLE_INFO.term}>{"기수"}</HeaderCell>
-            </TableHeader>
-            <TableBody>
-              {/* {data && data.length !== 0 ? (
+    <>
+      <Wrapper>
+        <Box>
+          {typeof data.retreatImage === "undefined" ||
+          data.retreatImage.length === 0 ? (
+            <NonImage />
+          ) : (
+            <PostSlideBox>
+              {data.retreatImage.length === 1 ? (
+                <PostImage src={data.retreatImage[0]} />
+              ) : (
+                <CustomSwiper>
+                  {data.retreatImage.map((el) => {
+                    return <PostImage src={el} key={el} />;
+                  })}
+                </CustomSwiper>
+              )}
+            </PostSlideBox>
+          )}
+        </Box>
+        <Box>
+          <ButtonBox>
+            <Button size={"sm"} variant="outlined" palette="gray">
+              {DELETE_NAME}
+            </Button>
+            <Button
+              size={"sm"}
+              variant="outlined"
+              palette="gray"
+              onClick={() => openModal("modify")}
+            >
+              {MODIFY_NAME}
+            </Button>
+            <Button size={"sm"} variant="outlined" palette="gray">
+              수련회 신청서 등록
+            </Button>
+          </ButtonBox>
+          <SubscriberTableContainer>
+            <Table>
+              <TableHeader>
+                <HeaderCell width={TABLE_INFO.date}>{"신청날짜"}</HeaderCell>
+                <HeaderCell width={TABLE_INFO.name}>{"이름"}</HeaderCell>
+                <HeaderCell width={TABLE_INFO.term}>{"기수"}</HeaderCell>
+              </TableHeader>
+              <TableBody>
+                {/* {data && data.length !== 0 ? (
                 data.map((inv, index) => (
                   <TableRow
                     key={inv.id}
@@ -107,41 +121,54 @@ const RetreatDetailPage = () => {
               ) : (
                 <TableBodyEmpty>검색 결과가 없습니다.</TableBodyEmpty>
               )} */}
-            </TableBody>
-          </Table>
-        </SubscriberTableContainer>
-      </Box>
-      <Box isRow>
-        <PageInfo>
-          <TitleTypography>{data.retreatTitle}</TitleTypography>
-          <ContentsTypography>{data.retreatContents}</ContentsTypography>
-          <DateTypography>
-            {`D-${dDaySet(data.retreatStartAt)} / ${data.retreatStartAt} - ${data.retreatEndAt}`}
-          </DateTypography>
-          <DateTypography>{data.retreatPlace}</DateTypography>
-          <CustomKakaoLoader place={data.retreatPlace} />
-          <SectionLine>강사</SectionLine>
-          <InstructorBox>
-            <InstructorBoxItem>
-              <h6>성함 :</h6>
-              <span>{data?.retreatInstructor}</span>
-            </InstructorBoxItem>
-            <InstructorBoxItem>
-              <h6>e-mail :</h6>
-              <span>{data?.retreatInstructorEmail}</span>
-            </InstructorBoxItem>
-            <InstructorBoxItem>
-              <h6>사역지 :</h6>
-              <span>{data.retreatInstructorMinistry}</span>
-            </InstructorBoxItem>
-            <InstructorBoxItem>
-              <h6>연락처 :</h6>
-              <span>{data.retreatInstructorPhoneNumber}</span>
-            </InstructorBoxItem>
-          </InstructorBox>
-        </PageInfo>
-      </Box>
-    </Wrapper>
+              </TableBody>
+            </Table>
+          </SubscriberTableContainer>
+        </Box>
+        <Box isRow>
+          <PageInfo>
+            <TitleTypography>{data.retreatTitle}</TitleTypography>
+            <ContentsTypography>{data.retreatContents}</ContentsTypography>
+            <DateTypography>
+              {`[ D-${dDaySet(data.retreatStartAt)} ] ${data.retreatStartAt} - ${data.retreatEndAt}`}
+            </DateTypography>
+            <DateTypography>{data.retreatPlace}</DateTypography>
+            <CustomKakaoLoader place={data.retreatPlace} />
+            <SectionLine>강사</SectionLine>
+            <InstructorBox>
+              <InstructorBoxItem>
+                <h6>성함 :</h6>
+                <span>{data?.retreatInstructor}</span>
+              </InstructorBoxItem>
+              <InstructorBoxItem>
+                <h6>e-mail :</h6>
+                <span>{data?.retreatInstructorEmail}</span>
+              </InstructorBoxItem>
+              <InstructorBoxItem>
+                <h6>사역지 :</h6>
+                <span>{data.retreatInstructorMinistry}</span>
+              </InstructorBoxItem>
+              <InstructorBoxItem>
+                <h6>연락처 :</h6>
+                <span>{data.retreatInstructorPhoneNumber}</span>
+              </InstructorBoxItem>
+            </InstructorBox>
+          </PageInfo>
+        </Box>
+      </Wrapper>
+      <NonBtnModal
+        isOpen={isOpen("modify")}
+        width="500px"
+        header={MODIFY_NAME}
+        body={
+          <RetreatInputForm
+            onClose={() => closeModal("modify")}
+            initData={data}
+          />
+        }
+        onClose={() => closeModal("modify")}
+      />
+    </>
   );
 };
 

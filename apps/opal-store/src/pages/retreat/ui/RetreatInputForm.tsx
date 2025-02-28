@@ -9,14 +9,19 @@ import { ModalFooter } from "../../../widget/modal/ui/ModalUiKit";
 import Button from "../../../shared/styles/ui/Button";
 
 import { retreatCreateErrorScheme } from "../config/retreatCreateErrorScheme";
-import { RetreatCreateFormInfo } from "../interface/data";
+import { RetreatInputFormInfo } from "../interface/data";
 import useCreateRetreatDoc from "../model/useCreateRetreatDoc";
+import DatePickerFieldLabel from "../../../widget/datePicker/ui/DatePickerFieldLabel";
+import dayjs from "dayjs";
 
 type Props = {
   onClose: () => void;
+  initData?: RetreatInputFormInfo;
 };
 
-const RetreatCreateForm = ({ onClose }: Props) => {
+type RetreatInputFormInfoKey = keyof RetreatInputFormInfo;
+
+const RetreatInputForm = ({ onClose, initData }: Props) => {
   const createRetreatDocMutate = useCreateRetreatDoc();
   const {
     register,
@@ -24,8 +29,9 @@ const RetreatCreateForm = ({ onClose }: Props) => {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<RetreatCreateFormInfo>({
+  } = useForm<RetreatInputFormInfo>({
     resolver: yupResolver(retreatCreateErrorScheme),
+    defaultValues: initData,
   });
 
   const valuePlace = watch("retreatPlace");
@@ -39,6 +45,16 @@ const RetreatCreateForm = ({ onClose }: Props) => {
       onSuccess: onClose,
     });
   });
+
+  const formatRetreatDate = (dateString: RetreatInputFormInfoKey): Date => {
+    const data = watch(dateString) as string;
+    return dayjs(data).toDate();
+  };
+
+  const handleRetreatDate = (date: Date, key: RetreatInputFormInfoKey) => {
+    const formatAt = dayjs(date).format("YYYY-MM-DD");
+    setValue(key, formatAt);
+  };
 
   return (
     <BasicForm onSubmit={handleRetreatCreate}>
@@ -58,21 +74,22 @@ const RetreatCreateForm = ({ onClose }: Props) => {
         message={errors.retreatContents?.message}
         state="error"
       />
-
-      <TextFieldLabel
-        {...register("retreatStartAt")}
+      <DatePickerFieldLabel
+        selected={formatRetreatDate("retreatStartAt")}
+        setStartDate={(date) => {
+          if (date) handleRetreatDate(date, "retreatStartAt");
+        }}
         label="수련회 시작날짜"
-        inputSize="sm"
-        type="date"
         isRequire
         message={errors.retreatStartAt?.message}
         state="error"
       />
-      <TextFieldLabel
-        {...register("retreatEndAt")}
+      <DatePickerFieldLabel
+        selected={formatRetreatDate("retreatEndAt")}
+        setStartDate={(date) => {
+          if (date) handleRetreatDate(date, "retreatEndAt");
+        }}
         label="수련회 종료날짜"
-        inputSize="sm"
-        type="date"
         isRequire
         message={errors.retreatEndAt?.message}
         state="error"
@@ -123,7 +140,7 @@ const RetreatCreateForm = ({ onClose }: Props) => {
   );
 };
 
-export default RetreatCreateForm;
+export default RetreatInputForm;
 
 const BasicForm = styled.form`
   display: grid;

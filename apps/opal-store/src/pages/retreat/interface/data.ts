@@ -1,8 +1,9 @@
-export interface RetreatReq extends RetreatCreateFormInfo {
+export interface RetreatReq extends RetreatInputFormInfo {
   id: string;
 }
 
-export type RetreatCreateFormInfo = {
+export type RetreatInputFormInfo = {
+  retreatImage?: string[];
   retreatTitle: string;
   retreatContents: string;
   retreatPlace: string;

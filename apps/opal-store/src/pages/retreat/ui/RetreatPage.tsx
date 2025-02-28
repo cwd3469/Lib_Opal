@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 
 import useModal from "../../../widget/modal/model/useModal";
-import Button from "../../../shared/styles/ui/Button";
 import NonBtnModal from "../../../widget/modal/ui/NonBtnModal";
-import RetreatCreateForm from "./RetreatCreateForm";
 import Table from "../../../widget/table/ui/Table";
+import TableBodyEmpty from "../../../widget/table/ui/TableBodyEmpty";
 import { HeaderCell, TableHeader } from "../../../widget/table/ui/TableHeader";
-
 import TableBody from "../../../widget/table/ui/TableBody";
 import { RowCell, TableRow } from "../../../widget/table/ui/TableRow";
-import useGetRetreatDoc from "../model/useGetRetreatDoc";
-import TableBodyEmpty from "../../../widget/table/ui/TableBodyEmpty";
-import { useNavigate } from "react-router-dom";
+import Button from "../../../shared/styles/ui/Button";
 import Path from "../../../shared/config/path";
+
+import RetreatInputForm from "./RetreatInputForm";
+import useGetRetreatDoc from "../model/useGetRetreatDoc";
 
 type ModalText = "create" | "modify";
 
@@ -90,7 +90,7 @@ const RetreatPage = () => {
         isOpen={isOpen("create")}
         width="500px"
         header={"수련회 개설"}
-        body={<RetreatCreateForm onClose={handleClose} />}
+        body={<RetreatInputForm onClose={handleClose} />}
         onClose={handleClose}
       />
     </Wrapper>

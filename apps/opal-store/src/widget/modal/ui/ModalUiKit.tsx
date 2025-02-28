@@ -4,6 +4,11 @@ type ModalBodyContentType = {
   width?: string;
 };
 
+const Z_INDEX = {
+  mark: 999998,
+  maskBody: 999999,
+};
+
 export const Mask = styled.div`
   position: fixed;
   top: 0;
@@ -11,13 +16,14 @@ export const Mask = styled.div`
   width: 100%;
   height: 100%;
   background-color: #000000b2;
+  z-index: ${Z_INDEX.mark};
 `;
 export const MaskBody = styled.div<{ zIndex?: string }>`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: ${(props) => props.zIndex ?? "10"};
+  z-index: ${(props) => props.zIndex ?? Z_INDEX.maskBody};
 `;
 
 export const MaskBodyContent = styled.div<ModalBodyContentType>`
