@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
-
-import useModal from "../../../widget/modal/model/useModal";
-import Button from "../../../shared/styles/ui/Button";
-import NonBtnModal from "../../../widget/modal/ui/NonBtnModal";
-
-import Table from "../../../widget/table/ui/Table";
-import { HeaderCell, TableHeader } from "../../../widget/table/ui/TableHeader";
-
-import TableBody from "../../../widget/table/ui/TableBody";
-
 import { useNavigate } from "react-router-dom";
-import Path from "../../../shared/config/path";
+
+import Table from "@/widget/table/ui/Table";
+import TableBody from "@/widget/table/ui/TableBody";
+import { HeaderCell, TableHeader } from "@/widget/table/ui/TableHeader";
+import NonBtnModal from "@/widget/modal/ui/NonBtnModal";
+import useModal from "@/widget/modal/model/useModal";
+
+import Button from "@/shared/styles/ui/Button";
+import Path from "@/shared/config/path";
 
 type ModalText = "create" | "modify";
 
@@ -27,8 +25,6 @@ const MembershipPage = () => {
   const navigate = useNavigate();
 
   const { isOpen, openModal, closeModal } = useModal<ModalText>();
-
-  const data = [""];
 
   const handleClose = () => closeModal("create");
 

@@ -6,12 +6,12 @@ import {
   doc,
   updateDoc,
   deleteDoc,
-} from "../../../../shared/firebase";
-import { RetreatCreateFormInfo, RetreatReq } from "../../interface/data";
+} from "@/shared/firebase";
+import { RetreatInputFormInfo, RetreatReq } from "../../interface/data";
 
 type UpdateRetreatDocParams = {
   id: string;
-  dto: RetreatCreateFormInfo;
+  dto: RetreatInputFormInfo;
 };
 
 const collectionName = "retreat";
@@ -34,7 +34,7 @@ export const getRetreatDoc: () => Promise<RetreatReq[]> = async () => {
  * 수련회 생성 firebase api
  * @prams RetreatConvertReq
  */
-export const createRetreatDoc = async (dto: RetreatCreateFormInfo) => {
+export const createRetreatDoc = async (dto: RetreatInputFormInfo) => {
   return await addDoc(collectionDB, dto);
 };
 
@@ -52,6 +52,6 @@ export const updateRetreatDoc = async ({ id, dto }: UpdateRetreatDocParams) => {
  * @prams id
  */
 export const deleteRetreatDoc = async (id: string) => {
-  const userDoc = doc(db, collectionName, id);
+  const userDoc = doc(db, "retreat", id);
   return await deleteDoc(userDoc);
 };

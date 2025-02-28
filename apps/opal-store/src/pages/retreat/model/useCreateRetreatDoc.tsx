@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createRetreatDoc } from "./api/list";
-import QueryKey from "../../../shared/config/QueryKey";
-import { useAlert } from "../../../widget/confirm/model/useAlert";
+import QueryKey from "@/shared/config/QueryKey";
+import { useAlert } from "@/widget/confirm/model/useAlert";
 
 /**
  * 수련회 생성 firebase api

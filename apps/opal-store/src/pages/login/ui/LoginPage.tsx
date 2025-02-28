@@ -1,17 +1,17 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import loginBg1 from "../assets/login-bg1.jpg";
+import TextFieldLabel from "@/widget/textField/ui/TextFieldLabel";
+import PasswordTextField from "@/widget/textField/ui/PasswordTextField";
+import { useAlert } from "@/widget/confirm/model/useAlert";
 
+import Button from "@/shared/styles/ui/Button";
+
+import loginBg1 from "../assets/login-bg1.jpg";
 import { LOGIN_PAGE_TEXT } from "../config/loginPageText";
 import { loginErrorScheme } from "../config/loginErrorScheme";
-
-import Button from "../../../shared/styles/ui/Button";
-import TextFieldLabel from "../../../widget/textField/ui/TextFieldLabel";
-import PasswordTextField from "../../../widget/textField/ui/PasswordTextField";
-import { useAlert } from "../../../widget/confirm/model/useAlert";
-import { useNavigate } from "react-router-dom";
 
 type LoginInfo = {
   memberId: string;

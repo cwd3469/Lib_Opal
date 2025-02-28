@@ -18,7 +18,7 @@ export const Mask = styled.div`
   background-color: #000000b2;
   z-index: ${Z_INDEX.mark};
 `;
-export const MaskBody = styled.div<{ zIndex?: string }>`
+export const MaskBody = styled.div<{ zIndex?: number }>`
   position: fixed;
   top: 50%;
   left: 50%;

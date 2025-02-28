@@ -1,18 +1,20 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 
-import useModal from "../../../widget/modal/model/useModal";
-import NonBtnModal from "../../../widget/modal/ui/NonBtnModal";
-import Table from "../../../widget/table/ui/Table";
-import TableBodyEmpty from "../../../widget/table/ui/TableBodyEmpty";
-import { HeaderCell, TableHeader } from "../../../widget/table/ui/TableHeader";
-import TableBody from "../../../widget/table/ui/TableBody";
-import { RowCell, TableRow } from "../../../widget/table/ui/TableRow";
-import Button from "../../../shared/styles/ui/Button";
-import Path from "../../../shared/config/path";
+import useModal from "@/widget/modal/model/useModal";
+import NonBtnModal from "@/widget/modal/ui/NonBtnModal";
+import Table from "@/widget/table/ui/Table";
+import TableBodyEmpty from "@/widget/table/ui/TableBodyEmpty";
+import { HeaderCell, TableHeader } from "@/widget/table/ui/TableHeader";
+import TableBody from "@/widget/table/ui/TableBody";
+import { RowCell, TableRow } from "@/widget/table/ui/TableRow";
+import Button from "@/shared/styles/ui/Button";
+import Path from "@/shared/config/path";
 
 import RetreatInputForm from "./RetreatInputForm";
 import useGetRetreatDoc from "../model/useGetRetreatDoc";
+import useCreateRetreatDoc from "../model/useCreateRetreatDoc";
+import { RetreatInputFormInfo } from "../interface/data";
 
 type ModalText = "create" | "modify";
 
@@ -31,11 +33,20 @@ const RetreatPage = () => {
 
   const { data } = useGetRetreatDoc();
 
-  const handleClose = () => closeModal("create");
+  const createRetreatDocMutate = useCreateRetreatDoc();
 
   const handleRowClick = (id: string) => {
     navigate(`${Path.RETREAT_DETAIL}/${id}`);
   };
+
+  const handleClose = () => closeModal("create");
+
+  const handleRetreatCreate = (value: RetreatInputFormInfo) => {
+    createRetreatDocMutate.mutate(value, {
+      onSuccess: handleClose,
+    });
+  };
+
   return (
     <Wrapper>
       <PageHeader>
@@ -90,7 +101,13 @@ const RetreatPage = () => {
         isOpen={isOpen("create")}
         width="500px"
         header={"수련회 개설"}
-        body={<RetreatInputForm onClose={handleClose} />}
+        body={
+          <RetreatInputForm
+            onClose={handleClose}
+            onSubmit={handleRetreatCreate}
+            rightBtnName="생성"
+          />
+        }
         onClose={handleClose}
       />
     </Wrapper>

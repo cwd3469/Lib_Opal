@@ -1,28 +1,33 @@
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
+import dayjs from "dayjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import TextFieldLabel from "../../../widget/textField/ui/TextFieldLabel";
-import PostSelect from "../../../widget/postSelect/PostSelect";
-import { ModalFooter } from "../../../widget/modal/ui/ModalUiKit";
+import TextFieldLabel from "@/widget/textField/ui/TextFieldLabel";
+import PostSelect from "@/widget/postSelect/PostSelect";
+import { ModalFooter } from "@/widget/modal/ui/ModalUiKit";
 
-import Button from "../../../shared/styles/ui/Button";
+import Button from "@/shared/styles/ui/Button";
 
 import { retreatCreateErrorScheme } from "../config/retreatCreateErrorScheme";
 import { RetreatInputFormInfo } from "../interface/data";
-import useCreateRetreatDoc from "../model/useCreateRetreatDoc";
-import DatePickerFieldLabel from "../../../widget/datePicker/ui/DatePickerFieldLabel";
-import dayjs from "dayjs";
+import DatePickerFieldLabel from "@/widget/datePicker/ui/DatePickerFieldLabel";
 
 type Props = {
-  onClose: () => void;
+  rightBtnName: string;
   initData?: RetreatInputFormInfo;
+  onClose: () => void;
+  onSubmit: (value: RetreatInputFormInfo) => void;
 };
 
 type RetreatInputFormInfoKey = keyof RetreatInputFormInfo;
 
-const RetreatInputForm = ({ onClose, initData }: Props) => {
-  const createRetreatDocMutate = useCreateRetreatDoc();
+const RetreatInputForm = ({
+  onClose,
+  onSubmit,
+  rightBtnName,
+  initData,
+}: Props) => {
   const {
     register,
     watch,
@@ -40,12 +45,6 @@ const RetreatInputForm = ({ onClose, initData }: Props) => {
     setValue("retreatPlace", value);
   };
 
-  const handleRetreatCreate = handleSubmit((value) => {
-    createRetreatDocMutate.mutate(value, {
-      onSuccess: onClose,
-    });
-  });
-
   const formatRetreatDate = (dateString: RetreatInputFormInfoKey): Date => {
     const data = watch(dateString) as string;
     return dayjs(data).toDate();
@@ -57,7 +56,7 @@ const RetreatInputForm = ({ onClose, initData }: Props) => {
   };
 
   return (
-    <BasicForm onSubmit={handleRetreatCreate}>
+    <BasicForm onSubmit={handleSubmit(onSubmit)}>
       <TextFieldLabel
         {...register("retreatTitle")}
         label="수련회 제목"
@@ -133,7 +132,7 @@ const RetreatInputForm = ({ onClose, initData }: Props) => {
           취소
         </Button>
         <Button size={"sm"} palette={"gray"} variant={"contained"}>
-          확인
+          {rightBtnName}
         </Button>
       </ModalFooter>
     </BasicForm>

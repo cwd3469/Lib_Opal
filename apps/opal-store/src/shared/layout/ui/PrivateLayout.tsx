@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import SideBar from "../../../widget/sideBar/ui/SideBar";
-import { AuthInterface } from "../../../pages/main/config/interface";
 import { Outlet } from "react-router-dom";
+
+import SideBar from "@/widget/sideBar/ui/SideBar";
+import { AuthInterface } from "@/pages/main/config/interface";
 
 type Props = {
   data: AuthInterface;

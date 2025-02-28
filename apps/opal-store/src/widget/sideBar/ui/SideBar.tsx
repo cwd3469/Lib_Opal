@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { Permissions } from "../../../pages/main/config/interface";
+
+import { Permissions } from "../interface";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import getMenu from "../config/getMenu";
 import SideBarBtn from "./SideBarBtn";
@@ -28,8 +29,8 @@ const SideBar = ({ logo, name }: Props) => {
       </UserSection>
       <MenuList>
         <SectionName>------------ 일반 ------------</SectionName>
-        {getMenu.map((el) => {
-          return <SideBarBtn key={el.path} {...el} />;
+        {getMenu.map((el, index) => {
+          return <SideBarBtn key={index} {...el} />;
         })}
       </MenuList>
       <Footer>ⓒ Copyright © 2025 jY. All rights reserved.</Footer>

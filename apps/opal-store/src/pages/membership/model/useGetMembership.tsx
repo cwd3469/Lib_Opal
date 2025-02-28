@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import QueryKey from "../../../shared/config/QueryKey";
+
+import QueryKey from "@/shared/config/QueryKey";
+
 import { getMembershipDoc } from "./api";
 
 const useGetMembership = () => {

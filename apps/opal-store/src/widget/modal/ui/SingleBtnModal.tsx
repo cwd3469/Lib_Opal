@@ -38,8 +38,8 @@ const SingleBtnModal = ({
             <Button
               onClick={leftBtnOnClick ? leftBtnOnClick : onClose}
               disabled={leftBtnDisabled}
-              size={"md"}
-              palette={palette ?? "primary"}
+              size={"sm"}
+              palette={palette ?? "gray"}
               variant={"contained"}
             >
               {leftBtnTitle ? leftBtnTitle : "확인"}

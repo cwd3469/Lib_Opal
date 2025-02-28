@@ -22,6 +22,10 @@ interface Props {
   children: ReactNode;
 }
 
+const Z_INDEX = {
+  maskBody: 9999999,
+};
+
 export const AlertContext = createContext<AlertContextProps | undefined>(
   undefined
 );
@@ -47,7 +51,7 @@ export const AlertProvider = ({ children }: Props) => {
       {children}
       {alert && (
         <DoubleBtnModal
-          zIndex="99999"
+          zIndex={Z_INDEX.maskBody}
           header={
             <AlertHeader>
               {alert.type === "error" ? (
