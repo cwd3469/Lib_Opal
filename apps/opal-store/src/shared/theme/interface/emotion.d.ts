@@ -1,7 +1,8 @@
 import "@emotion/react";
-import { TypographyValueKey } from "../../../shared/theme/config/typography";
-import { PaletteValueKey } from "../../../shared/theme/config/palette";
-import { BreakpointValueKey } from "../../../shared/theme/config/size";
+import { TypographyValueKey } from "../config/typography";
+import { PaletteValueKey } from "../config/palette";
+import { BreakpointValueKey } from "../config/size";
+import { ShadowTheme } from "../config/shadow";
 
 declare module "@emotion/react" {
   export interface Theme {
@@ -11,5 +12,6 @@ declare module "@emotion/react" {
     screens: BreakpointValueKey;
     typography: TypographyValueKey;
     palette: PaletteValueKey;
+    shadow: ShadowTheme;
   }
 }

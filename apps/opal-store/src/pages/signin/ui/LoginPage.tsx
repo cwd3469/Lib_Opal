@@ -9,7 +9,6 @@ import { useAlert } from "@/widget/confirm/model/useAlert";
 
 import Button from "@/shared/styles/ui/Button";
 
-import loginBg1 from "../assets/login-bg1.jpg";
 import { LOGIN_PAGE_TEXT } from "../config/loginPageText";
 import { loginErrorScheme } from "../config/loginErrorScheme";
 
@@ -45,30 +44,32 @@ const LoginPage = () => {
 
   return (
     <Warper>
-      <LoginForm onSubmit={handleSubmit(onSubmit)}>
-        <TextFieldLabel
-          label={LOGIN_PAGE_TEXT.ID_INPUT_LABEL}
-          {...register("memberId", { required: true })}
-          placeholder={LOGIN_PAGE_TEXT.ID_PLACEHOLDER}
-          state="error"
-          message={errors.memberId?.message}
-        />
-        <PasswordTextField
-          label={LOGIN_PAGE_TEXT.PASSWORD_INPUT_LABEL}
-          {...register("password", { required: true })}
-          placeholder={LOGIN_PAGE_TEXT.PASSWORD_PLACEHOLDER}
-          state="error"
-          message={errors.password?.message}
-          type="password"
-        />
-        <Button type="submit" size="sm" palette="secondary">
-          로그인
-        </Button>
-      </LoginForm>
       <Side>
-        <ImageBox>
-          <img src={loginBg1} alt="loginBg" />
-        </ImageBox>
+        <LoginForm onSubmit={handleSubmit(onSubmit)}>
+          <TextFieldLabel
+            label={LOGIN_PAGE_TEXT.ID_INPUT_LABEL}
+            {...register("memberId", { required: true })}
+            placeholder={LOGIN_PAGE_TEXT.ID_PLACEHOLDER}
+            state="error"
+            message={errors.memberId?.message}
+            inputSize="md"
+          />
+          <PasswordTextField
+            label={LOGIN_PAGE_TEXT.PASSWORD_INPUT_LABEL}
+            {...register("password", { required: true })}
+            placeholder={LOGIN_PAGE_TEXT.PASSWORD_PLACEHOLDER}
+            state="error"
+            message={errors.password?.message}
+            type="password"
+            inputSize="md"
+          />
+          <Button type="submit" size="md" palette="secondary">
+            로그인
+          </Button>
+        </LoginForm>
+      </Side>
+      <Side>
+        <ImageBox src={"/logo_opal.png"} alt="loginBg" />
       </Side>
     </Warper>
   );
@@ -86,22 +87,23 @@ const Warper = styled.div`
   padding: 10px;
   border-radius: 5px;
 
-  background-color: #fff;
-  border: 1px solid #999;
+  background-color: ${(props) => props.theme.palette.white[100]};
+  border: 1px solid ${(props) => props.theme.palette.gray[500]};
+
+  ${(props) => props.theme.shadow.BOX_SHADOW_BASE}
 `;
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  width: 50%;
 `;
 
 const Side = styled.div`
   display: flex;
+  flex-direction: column;
   width: 50%;
 `;
 
-const ImageBox = styled.div`
+const ImageBox = styled.img`
   width: 100%;
-  overflow: hidden;
 `;
