@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import LoginPage from "./pages/signin/ui/LoginPage";
+import LoginPage from "./pages/signIn/ui/LoginPage";
 import MainPage from "./pages/main/ui/MainPage";
 import { AuthInterface } from "./pages/main/config/interface";
 import MembershipPage from "./pages/membership/ui/MembershipPage";
@@ -12,6 +12,7 @@ import RetreatDetailPage from "./pages/retreatDetail/ui/RetreatDetailPage";
 import ScreenLayout from "./shared/layout/ui/ScreenLayout";
 import PrivateLayout from "./shared/layout/ui/PrivateLayout";
 import Path from "./shared/config/path";
+import SignUpPage from "./pages/signUp/ui/SignUpPage";
 
 function App() {
   const data: AuthInterface = {
@@ -24,7 +25,8 @@ function App() {
     <BrowserRouter basename="/">
       <Routes>
         <Route element={<ScreenLayout />}>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path={Path.SIGN_IN} element={<LoginPage />} />
+          <Route path={Path.SIGN_UP} element={<SignUpPage />} />
 
           <Route element={<PrivateLayout data={data} />}>
             <Route path={Path.MAIN} element={<MainPage />} />

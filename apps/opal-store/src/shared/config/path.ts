@@ -1,5 +1,7 @@
 const Path = {
   MAIN: "/",
+  SIGN_IN: "/signin",
+  SIGN_UP: "/signup",
   MEMBERSHIP: "membership",
   DASHBOARD: "dashboard",
   SHELLll: "shell",

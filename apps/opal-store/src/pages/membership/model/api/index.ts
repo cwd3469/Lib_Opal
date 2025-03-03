@@ -7,7 +7,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "../../../../shared/firebase";
-import { MembershipCreateFormInfo, MembershipReq } from "../../interfaces";
+import { MembershipCreateFormInfo } from "../../interfaces";
 
 type UpdateMembershipDocParams = {
   id: string;

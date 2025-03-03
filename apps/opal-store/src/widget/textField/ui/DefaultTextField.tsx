@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Breakpoint } from "../../../shared/styles/interface/pointer";
+import { Breakpoint } from "@/shared/styles/interface/pointer";
 
 import { css } from "@emotion/react";
 

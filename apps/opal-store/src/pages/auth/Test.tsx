@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
-const SignUpPage = () => {
+const Test = () => {
   const { t, i18n } = useTranslation("signout");
   const langs = ["en", "ko"];
 
@@ -135,7 +135,7 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default Test;
 
 const Container = styled.div`
   background-color: #fff;

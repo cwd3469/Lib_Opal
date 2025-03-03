@@ -8,7 +8,9 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  query,
 } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 // Firebase 프로젝트 설정 정보 (Firebase 콘솔에서 확인 가능)
 const firebaseConfig = {
@@ -24,5 +26,16 @@ const firebaseConfig = {
 // Firebase 앱 초기화
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-export { db, collection, addDoc, getDocs, updateDoc, deleteDoc, doc };
+export {
+  db,
+  auth,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query,
+};
