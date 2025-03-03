@@ -6,6 +6,7 @@ import TextFieldFieldset, {
 import { css } from "@emotion/css";
 
 type Props = TextFieldFieldsetProps & {
+  placeholderText?: string;
   selected: Date;
   setStartDate: (date: Date | null) => void;
 };
@@ -22,6 +23,7 @@ const DatePickerFieldLabel = ({
   message,
   isRequire,
   selected,
+  placeholderText,
   setStartDate,
 }: Props) => {
   return (
@@ -36,6 +38,7 @@ const DatePickerFieldLabel = ({
         selected={selected}
         onChange={(date) => setStartDate(date)}
         className={customCatePicker}
+        placeholderText={placeholderText}
       />
     </TextFieldFieldset>
   );

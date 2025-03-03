@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 
+import { useAlert } from "@/widget/confirm/model/useAlert";
 import useModal from "@/widget/modal/model/useModal";
 import NonBtnModal from "@/widget/modal/ui/NonBtnModal";
 import Table from "@/widget/table/ui/Table";
@@ -16,20 +17,22 @@ import useGetRetreatDoc from "../model/useGetRetreatDoc";
 import useCreateRetreatDoc from "../model/useCreateRetreatDoc";
 import { RetreatInputFormInfo } from "../interface/data";
 
-type ModalText = "create" | "modify";
+import {
+  RETREAT_CREATE_FAIL_MSG,
+  RETREAT_CREATE_MODAL_TEXT,
+  RETREAT_CREATE_SUCCESS_MSG,
+  RETREAT_PAGE_TABLE_INFO,
+  RETREAT_PAGE_TABLE_TEXT,
+} from "../config/constant";
 
-const TABLE_INFO = {
-  no: "10%",
-  title: "22.5%",
-  date: "22.5%",
-  place: "22.5%",
-  instructor: "22.5%",
-};
+type ModalText = "create" | "modify";
 
 const RetreatPage = () => {
   const navigate = useNavigate();
 
   const { isOpen, openModal, closeModal } = useModal<ModalText>();
+
+  const { showAlert } = useAlert();
 
   const { data } = useGetRetreatDoc();
 
@@ -43,7 +46,21 @@ const RetreatPage = () => {
 
   const handleRetreatCreate = (value: RetreatInputFormInfo) => {
     createRetreatDocMutate.mutate(value, {
-      onSuccess: handleClose,
+      onSuccess: () => {
+        showAlert({
+          type: "success",
+          title: RETREAT_CREATE_SUCCESS_MSG.TITLE,
+          content: RETREAT_CREATE_SUCCESS_MSG.CONTENT,
+        });
+        handleClose();
+      },
+      onError(error) {
+        showAlert({
+          type: "error",
+          title: RETREAT_CREATE_FAIL_MSG.TITLE,
+          content: error.message,
+        });
+      },
     });
   };
 
@@ -56,17 +73,27 @@ const RetreatPage = () => {
           palette="gray"
           onClick={() => openModal("create")}
         >
-          수련회 개설
+          {RETREAT_CREATE_MODAL_TEXT.CREATE_MODAL_BUTTON}
         </Button>
       </PageHeader>
       <PageBody>
         <Table>
           <TableHeader>
-            <HeaderCell width={TABLE_INFO.no}>{"No"}</HeaderCell>
-            <HeaderCell width={TABLE_INFO.title}>{"주제"}</HeaderCell>
-            <HeaderCell width={TABLE_INFO.date}>{"날짜"}</HeaderCell>
-            <HeaderCell width={TABLE_INFO.place}>{"장소"}</HeaderCell>
-            <HeaderCell width={TABLE_INFO.instructor}>{"초청 강사"}</HeaderCell>
+            <HeaderCell width={RETREAT_PAGE_TABLE_INFO[0].width}>
+              {RETREAT_PAGE_TABLE_INFO[0].title}
+            </HeaderCell>
+            <HeaderCell width={RETREAT_PAGE_TABLE_INFO[1].width}>
+              {RETREAT_PAGE_TABLE_INFO[1].title}
+            </HeaderCell>
+            <HeaderCell width={RETREAT_PAGE_TABLE_INFO[2].width}>
+              {RETREAT_PAGE_TABLE_INFO[2].title}
+            </HeaderCell>
+            <HeaderCell width={RETREAT_PAGE_TABLE_INFO[3].width}>
+              {RETREAT_PAGE_TABLE_INFO[3].title}
+            </HeaderCell>
+            <HeaderCell width={RETREAT_PAGE_TABLE_INFO[4].width}>
+              {RETREAT_PAGE_TABLE_INFO[4].title}
+            </HeaderCell>
           </TableHeader>
           <TableBody>
             {data && data.length !== 0 ? (
@@ -76,36 +103,40 @@ const RetreatPage = () => {
                   onClick={() => handleRowClick(inv.id)}
                   hasPointer
                 >
-                  <RowCell width={TABLE_INFO.no}>{index + 1}</RowCell>
-                  <RowCell width={TABLE_INFO.title}>
+                  <RowCell width={RETREAT_PAGE_TABLE_INFO[0].width}>
+                    {index + 1}
+                  </RowCell>
+                  <RowCell width={RETREAT_PAGE_TABLE_INFO[1].width}>
                     <label>{inv.retreatTitle}</label>
                   </RowCell>
-                  <RowCell width={TABLE_INFO.date}>
+                  <RowCell width={RETREAT_PAGE_TABLE_INFO[2].width}>
                     <label>{`${inv.retreatStartAt} - ${inv.retreatEndAt}`}</label>
                   </RowCell>
-                  <RowCell width={TABLE_INFO.place}>
+                  <RowCell width={RETREAT_PAGE_TABLE_INFO[3].width}>
                     <label>{inv.retreatPlace}</label>
                   </RowCell>
-                  <RowCell width={TABLE_INFO.instructor}>
+                  <RowCell width={RETREAT_PAGE_TABLE_INFO[4].width}>
                     <label>{inv.retreatInstructor}</label>
                   </RowCell>
                 </TableRow>
               ))
             ) : (
-              <TableBodyEmpty>검색 결과가 없습니다.</TableBodyEmpty>
+              <TableBodyEmpty>
+                {RETREAT_PAGE_TABLE_TEXT.NONE_DATA}
+              </TableBodyEmpty>
             )}
           </TableBody>
         </Table>
       </PageBody>
       <NonBtnModal
         isOpen={isOpen("create")}
-        width="500px"
-        header={"수련회 개설"}
+        width={RETREAT_CREATE_MODAL_TEXT.WIDTH}
+        header={RETREAT_CREATE_MODAL_TEXT.CREATE_MODAL_HEADER}
         body={
           <RetreatInputForm
             onClose={handleClose}
             onSubmit={handleRetreatCreate}
-            rightBtnName="생성"
+            rightBtnName={RETREAT_CREATE_MODAL_TEXT.CREATE_MODAL_RIGHT_BTN}
           />
         }
         onClose={handleClose}

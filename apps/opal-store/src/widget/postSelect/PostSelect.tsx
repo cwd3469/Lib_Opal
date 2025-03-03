@@ -7,6 +7,7 @@ import TextFieldFieldset, {
 } from "../textField/ui/TextFieldFieldset";
 
 type Props = TextFieldFieldsetProps & {
+  placeholderText?: string;
   onSelect: (value: string) => void;
   value: string;
 };
@@ -18,6 +19,7 @@ const PostSelect = ({
   isRequire,
   message,
   state,
+  placeholderText,
 }: Props) => {
   const open = useDaumPostcodePopup(
     "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
@@ -56,6 +58,7 @@ const PostSelect = ({
           inputWidth={"calc(100% - 74px)"}
           inputSize="sm"
           defaultValue={value}
+          placeholder={placeholderText}
           readOnly
         />
         <Button
