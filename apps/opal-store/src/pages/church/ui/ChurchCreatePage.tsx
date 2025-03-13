@@ -17,6 +17,7 @@ import {
 import { ChurchCreateInputInfo } from "../interface";
 import PostSelect from "@/widget/postSelect/PostSelect";
 import useChurchCreate from "../model/useChurchCreate";
+import ImageUpload from "@/widget/imageUpload/ui/ImageUpload";
 
 const ChurchCreatePage = () => {
   const createMutaionChurch = useChurchCreate();
@@ -82,13 +83,10 @@ const ChurchCreatePage = () => {
           state="error"
           isRequire
         />
-        <TextFieldLabel
+        <ImageUpload
           label={CHURCH_CREATE_PAGE_CONTEXT.LOGO_INPUT_LABEL}
-          {...register("name", { required: true })}
-          inputSize="md"
           state="error"
           message={errors.email?.message}
-          type="file"
         />
         <TextFieldLabel
           label={CHURCH_CREATE_PAGE_CONTEXT.ID_INPUT_LABEL}

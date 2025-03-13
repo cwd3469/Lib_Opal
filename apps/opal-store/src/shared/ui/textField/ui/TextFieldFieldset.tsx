@@ -9,7 +9,7 @@ import {
 
 export type TextFieldFieldsetProps = {
   message?: string;
-  state?: string;
+  state?: "error" | "success";
   label?: string;
   isRequire?: boolean;
 };
