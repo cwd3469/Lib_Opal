@@ -3,15 +3,15 @@ import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import TextFieldLabel from "@/widget/textField/ui/TextFieldLabel";
 import PostSelect from "@/widget/postSelect/PostSelect";
-import { ModalFooter } from "@/widget/modal/ui/ModalUiKit";
 
 import Button from "@/shared/styles/ui/Button";
+import { ModalFooter } from "@/shared/ui/modal/ui/ModalUiKit";
+import TextFieldLabel from "@/shared/ui/textField/ui/TextFieldLabel";
+import DatePickerFieldLabel from "@/shared/ui/datePicker/ui/DatePickerFieldLabel";
 
 import { retreatCreateErrorScheme } from "../config/retreatCreateErrorScheme";
 import { RetreatInputFormInfo } from "../interface/data";
-import DatePickerFieldLabel from "@/widget/datePicker/ui/DatePickerFieldLabel";
 import { RETREAT_INPUT_FORM } from "../config/constant";
 
 type Props = {

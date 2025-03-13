@@ -2,11 +2,11 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styled from "@emotion/styled";
 
-import TextFieldLabel from "@/widget/textField/ui/TextFieldLabel";
-import PasswordTextField from "@/widget/textField/ui/PasswordTextField";
-import { useAlert } from "@/widget/confirm/model/useAlert";
-import SelectBox from "@/widget/dropDownBox/ui/SelectBox";
+import TextFieldLabel from "@/shared/ui/textField/ui/TextFieldLabel";
+import PasswordTextField from "@/shared/ui/textField/ui/PasswordTextField";
+import SelectBox from "@/shared/ui/dropDownBox/ui/SelectBox";
 
+import { useAlert } from "@/shared/ui/confirm/model/useAlert";
 import Button from "@/shared/styles/ui/Button";
 import formatOption from "@/shared/func/formatOption";
 

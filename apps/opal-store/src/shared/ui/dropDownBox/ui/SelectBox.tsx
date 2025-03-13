@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 import { Breakpoint } from "@/shared/styles/interface/pointer";
 import TextFieldFieldset, {
   TextFieldFieldsetProps,
-} from "@/widget/textField/ui/TextFieldFieldset";
+} from "../../textField/ui/TextFieldFieldset";
 import { OptionInterface } from "../interface";
 
 type SelectProps = {

@@ -1,4 +1,4 @@
-import { OptionInterface } from "@/widget/dropDownBox/interface";
+import { OptionInterface } from "@/shared/ui/dropDownBox/interface";
 
 type Props<T> = {
   list?: T[];

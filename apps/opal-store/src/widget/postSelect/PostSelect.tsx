@@ -1,10 +1,11 @@
 import { Address, useDaumPostcodePopup } from "react-daum-postcode";
 import Button from "../../shared/styles/ui/Button";
 import styled from "@emotion/styled";
-import { DefaultTextField } from "../textField/ui/DefaultTextField";
+
 import TextFieldFieldset, {
   TextFieldFieldsetProps,
-} from "../textField/ui/TextFieldFieldset";
+} from "@/shared/ui/textField/ui/TextFieldFieldset";
+import { DefaultTextField } from "@/shared/ui/textField/ui/DefaultTextField";
 
 type Props = TextFieldFieldsetProps & {
   placeholderText?: string;

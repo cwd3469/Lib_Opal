@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import { useNavigate, useParams } from "react-router-dom";
 
-import Table from "@/widget/table/ui/Table";
-import TableBody from "@/widget/table/ui/TableBody";
-import { HeaderCell, TableHeader } from "@/widget/table/ui/TableHeader";
-import NonBtnModal from "@/widget/modal/ui/NonBtnModal";
-import useModal from "@/widget/modal/model/useModal";
-import DoubleBtnModal from "@/widget/modal/ui/DoubleBtnModal";
-import { useAlert } from "@/widget/confirm/model/useAlert";
+import Table from "@/shared/ui/table/ui/Table";
+import TableBody from "@/shared/ui/table/ui/TableBody";
+import { HeaderCell, TableHeader } from "@/shared/ui/table/ui/TableHeader";
+import NonBtnModal from "@/shared/ui/modal/ui/NonBtnModal";
+import useModal from "@/shared/ui/modal/model/useModal";
+import DoubleBtnModal from "@/shared/ui/modal/ui/DoubleBtnModal";
+import { useAlert } from "@/shared/ui/confirm/model/useAlert";
 import CustomSwiper from "@/widget/swiper/ui/CustomSwiper";
 
 import Path from "@/shared/config/path";

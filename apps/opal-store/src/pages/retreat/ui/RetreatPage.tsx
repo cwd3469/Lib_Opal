@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 
-import { useAlert } from "@/widget/confirm/model/useAlert";
-import useModal from "@/widget/modal/model/useModal";
-import NonBtnModal from "@/widget/modal/ui/NonBtnModal";
-import Table from "@/widget/table/ui/Table";
-import TableBodyEmpty from "@/widget/table/ui/TableBodyEmpty";
-import { HeaderCell, TableHeader } from "@/widget/table/ui/TableHeader";
-import TableBody from "@/widget/table/ui/TableBody";
-import { RowCell, TableRow } from "@/widget/table/ui/TableRow";
+import { useAlert } from "@/shared/ui/confirm/model/useAlert";
+import useModal from "@/shared/ui/modal/model/useModal";
+import NonBtnModal from "@/shared/ui/modal/ui/NonBtnModal";
+import Table from "@/shared/ui/table/ui/Table";
+import TableBodyEmpty from "@/shared/ui/table/ui/TableBodyEmpty";
+import { HeaderCell, TableHeader } from "@/shared/ui/table/ui/TableHeader";
+import TableBody from "@/shared/ui/table/ui/TableBody";
+import { RowCell, TableRow } from "@/shared/ui/table/ui/TableRow";
 import Button from "@/shared/styles/ui/Button";
 import Path from "@/shared/config/path";
 

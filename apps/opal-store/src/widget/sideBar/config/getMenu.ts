@@ -1,5 +1,5 @@
 import { IconType } from "react-icons";
-import { Permissions } from "../../../pages/main/config/interface";
+
 import Path from "../../../shared/config/path";
 
 import { IoMan } from "react-icons/io5";
@@ -7,6 +7,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { MdGroup } from "react-icons/md";
 import { FaCampground } from "react-icons/fa6";
 import { CiViewList } from "react-icons/ci";
+import { Permissions } from "../interface";
 
 export interface Menu {
   name: string;

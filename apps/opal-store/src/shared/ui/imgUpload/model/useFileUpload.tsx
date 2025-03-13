@@ -3,7 +3,7 @@ import { useState } from "react";
 const useFileUpload = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [progress, setProgress] = useState<number>(0);
+  const [progress] = useState<number>(0);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];

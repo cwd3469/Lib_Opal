@@ -1,13 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
+import { ThemeProvider } from "@emotion/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import "./shared/styles/lib/reset.css";
 import "./shared/styles/lib/normalize.css";
 
-import { ThemeProvider } from "@emotion/react";
 import theme from "./shared/theme/config/theme.ts";
-import { AlertProvider } from "./widget/confirm/ui/AlertModalProvider.tsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AlertProvider } from "./shared/ui/confirm/ui/AlertModalProvider.tsx";
+
+import App from "./App.tsx";
 
 const queryClient = new QueryClient();
 

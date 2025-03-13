@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
+
+import { ReactNode } from "react";
+
 import {
   ErrorStatusMessage,
   SuccessStatusMessage,
-} from "../../../shared/styles/ui/StatusMessage";
-import { ReactNode } from "react";
+} from "@/shared/styles/ui/StatusMessage";
 
 export type TextFieldFieldsetProps = {
   message?: string;

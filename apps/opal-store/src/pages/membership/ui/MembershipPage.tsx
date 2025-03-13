@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-import Table from "@/widget/table/ui/Table";
-import TableBody from "@/widget/table/ui/TableBody";
-import { HeaderCell, TableHeader } from "@/widget/table/ui/TableHeader";
-import NonBtnModal from "@/widget/modal/ui/NonBtnModal";
-import useModal from "@/widget/modal/model/useModal";
+import Table from "@/shared/ui/table/ui/Table";
+import TableBody from "@/shared/ui/table/ui/TableBody";
+import { HeaderCell, TableHeader } from "@/shared/ui/table/ui/TableHeader";
+import NonBtnModal from "@/shared/ui/modal/ui/NonBtnModal";
+import useModal from "@/shared/ui/modal/model/useModal";
 
 import Button from "@/shared/styles/ui/Button";
-import Path from "@/shared/config/path";
+// import Path from "@/shared/config/path";
 
 type ModalText = "create" | "modify";
 
@@ -22,15 +22,10 @@ const TABLE_INFO = {
 };
 
 const MembershipPage = () => {
-  const navigate = useNavigate();
-
   const { isOpen, openModal, closeModal } = useModal<ModalText>();
 
   const handleClose = () => closeModal("create");
 
-  const handleRowClick = (id: string) => {
-    navigate(`${Path.RETREAT_DETAIL}/${id}`);
-  };
   return (
     <Wrapper>
       <PageHeader>

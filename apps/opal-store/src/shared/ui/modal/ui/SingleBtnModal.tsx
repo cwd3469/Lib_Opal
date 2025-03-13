@@ -1,5 +1,7 @@
-import Button from "../../../shared/styles/ui/Button";
 import { ModalPortal } from "./ModalPortal";
+
+import Button from "@/shared/styles/ui/Button";
+
 import { SingleBtnModalProps } from "../config/modalInfo";
 import {
   Mask,

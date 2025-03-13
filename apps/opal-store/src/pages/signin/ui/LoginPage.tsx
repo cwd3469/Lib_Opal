@@ -3,9 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 
-import TextFieldLabel from "@/widget/textField/ui/TextFieldLabel";
-import PasswordTextField from "@/widget/textField/ui/PasswordTextField";
-import { useAlert } from "@/widget/confirm/model/useAlert";
+import TextFieldLabel from "@/shared/ui/textField/ui/TextFieldLabel";
+import PasswordTextField from "@/shared/ui/textField/ui/PasswordTextField";
+import { useAlert } from "@/shared/ui/confirm/model/useAlert";
 
 import Button from "@/shared/styles/ui/Button";
 
