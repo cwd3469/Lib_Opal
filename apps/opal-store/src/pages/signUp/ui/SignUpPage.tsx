@@ -70,7 +70,7 @@ const LoginPage = () => {
 
   return (
     <Warper>
-      <WelcomeText>다니엘IO에 오신걸 환영합니다!</WelcomeText>
+      <WelcomeText>{SIGNUP_PAGE_TEXT.WELCOME_TEXT}</WelcomeText>
       <SignupForm onSubmit={handleSubmit(onSubmit)}>
         <TextFieldLabel
           label={SIGNUP_PAGE_TEXT.ID_INPUT_LABEL}

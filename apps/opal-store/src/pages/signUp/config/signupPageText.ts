@@ -1,4 +1,5 @@
 export const SIGNUP_PAGE_TEXT = {
+  WELCOME_TEXT: "다니엘IO에 오신걸 환영합니다!",
   ID_INPUT_LABEL: "아이디",
   ID_PLACEHOLDER: "아이디를 입력 하세요",
   PASSWORD_INPUT_LABEL: "비밀번호",

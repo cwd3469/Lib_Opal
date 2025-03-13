@@ -13,6 +13,7 @@ import ScreenLayout from "./shared/layout/ui/ScreenLayout";
 import PrivateLayout from "./shared/layout/ui/PrivateLayout";
 import Path from "./shared/config/path";
 import SignUpPage from "./pages/signUp/ui/SignUpPage";
+import ChurchCreatePage from "./pages/church/ui/ChurchCreatePage";
 
 function App() {
   const data: AuthInterface = {
@@ -27,7 +28,7 @@ function App() {
         <Route element={<ScreenLayout />}>
           <Route path={Path.SIGN_IN} element={<LoginPage />} />
           <Route path={Path.SIGN_UP} element={<SignUpPage />} />
-
+          <Route path={Path.CHURCH} element={<ChurchCreatePage />} />
           <Route element={<PrivateLayout data={data} />}>
             <Route path={Path.MAIN} element={<MainPage />} />
             <Route path={Path.MEMBERSHIP} element={<MembershipPage />} />

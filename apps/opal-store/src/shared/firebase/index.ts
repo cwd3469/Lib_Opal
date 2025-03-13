@@ -11,6 +11,7 @@ import {
   query,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // Firebase 프로젝트 설정 정보 (Firebase 콘솔에서 확인 가능)
 const firebaseConfig = {
@@ -27,10 +28,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 export {
   db,
   auth,
+  storage,
   collection,
   addDoc,
   getDocs,
