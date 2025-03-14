@@ -9,21 +9,21 @@ const Z_INDEX = {
   maskBody: 999999,
 };
 
-export const Mask = styled.div`
+export const Mask = styled.div<{ zIndex?: number }>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: #000000b2;
-  z-index: ${Z_INDEX.mark};
+  z-index: ${(props) => props.zIndex ?? Z_INDEX.mark};
 `;
 export const MaskBody = styled.div<{ zIndex?: number }>`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: ${(props) => props.zIndex ?? Z_INDEX.maskBody};
+  z-index: ${(props) => (props.zIndex ? props.zIndex + 1 : Z_INDEX.maskBody)};
 `;
 
 export const MaskBodyContent = styled.div<ModalBodyContentType>`

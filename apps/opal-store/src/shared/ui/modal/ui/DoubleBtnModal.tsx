@@ -29,7 +29,7 @@ const DoubleBtnModal = ({
   if (!isOpen) return <></>;
   return (
     <ModalPortal>
-      <Mask onClick={onClose} />
+      <Mask onClick={onClose} zIndex={zIndex} />
       <MaskBody zIndex={zIndex}>
         <MaskBodyContent width={width}>
           {typeof header === "string" ? (

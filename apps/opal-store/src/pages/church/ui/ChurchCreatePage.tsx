@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styled from "@emotion/styled";
 
@@ -20,7 +20,7 @@ import useChurchCreate from "../model/useChurchCreate";
 import ImageUpload from "@/widget/imageUpload/ui/ImageUpload";
 
 const ChurchCreatePage = () => {
-  const createMutaionChurch = useChurchCreate();
+  const createMutateChurch = useChurchCreate();
 
   const {
     register,
@@ -36,12 +36,18 @@ const ChurchCreatePage = () => {
 
   const valuePlace = watch("space");
 
+  const valueLogo = watch("logo") ?? null;
+
   const handlePostSelect = (value: string) => {
     setValue("space", value);
   };
 
-  const onSubmit: SubmitHandler<ChurchCreateInputInfo> = (inputInfo) => {
-    createMutaionChurch.mutate(
+  const handleLogoUpload = (url: string) => {
+    setValue("logo", url);
+  };
+
+  const handleCreateChurchSubmit = handleSubmit((inputInfo) => {
+    createMutateChurch.mutate(
       { dto: inputInfo },
       {
         onSuccess: () => {
@@ -60,12 +66,12 @@ const ChurchCreatePage = () => {
         },
       }
     );
-  };
+  });
 
   return (
     <Warper>
       <WelcomeText>{CHURCH_CREATE_PAGE_CONTEXT.WELCOME_TEXT}</WelcomeText>
-      <SignupForm onSubmit={handleSubmit(onSubmit)}>
+      <SignupForm onSubmit={handleCreateChurchSubmit}>
         <TextFieldLabel
           label={CHURCH_CREATE_PAGE_CONTEXT.NAME_INPUT_LABEL}
           {...register("name", { required: true })}
@@ -87,6 +93,8 @@ const ChurchCreatePage = () => {
           label={CHURCH_CREATE_PAGE_CONTEXT.LOGO_INPUT_LABEL}
           state="error"
           message={errors.email?.message}
+          uploadUrl={valueLogo}
+          onUpload={handleLogoUpload}
         />
         <TextFieldLabel
           label={CHURCH_CREATE_PAGE_CONTEXT.ID_INPUT_LABEL}
