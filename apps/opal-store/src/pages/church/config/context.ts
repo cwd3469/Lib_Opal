@@ -16,10 +16,19 @@ export const CHURCH_CREATE_PAGE_CONTEXT = {
 };
 
 export const CHURCH_CREATE_SUCCESS_MSG = {
-  TITLE: "교회 사이트 개설 성공",
+  TITLE: "교회 사이트 신규 개설 성공",
   CONTENT: "교회 사이트 개설를 성공적으로 완료되었습니다.",
 };
 
 export const CHURCH_CREATE_FAIL_MSG = {
   TITLE: "교회 사이트 개설 실패",
+};
+
+export const CHURCH_SET_SUCCESS_MSG = {
+  TITLE: "교회 사이트 관리자 추가 성공",
+  CONTENT: "교회 사이트 개설를 성공적으로 완료되었습니다.",
+};
+
+export const CHURCH_SET_FAIL_MSG = {
+  TITLE: "교회 사이트 관리자 추가 실패",
 };

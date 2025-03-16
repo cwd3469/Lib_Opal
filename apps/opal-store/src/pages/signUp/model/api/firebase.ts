@@ -32,7 +32,12 @@ export const getChurchDoc = async (): Promise<ChurchGetReq[]> => {
 };
 
 // 회원가입
-export const signUp = async (param: { email: string; password: string }) => {
+export const signUp = async (param: {
+  email: string;
+  password: string;
+  name: string;
+  term: number;
+}) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     param.email,

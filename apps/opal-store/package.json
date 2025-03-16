@@ -23,6 +23,7 @@
     "react-i18next": "^15.0.1",
     "react-kakao-maps-sdk": "^1.1.27",
     "react-perfect-scrollbar": "^1.5.8",
+    "react-spinners": "^0.15.0",
     "swiper": "^11.2.4"
   },
   "devDependencies": {

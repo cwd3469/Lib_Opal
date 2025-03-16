@@ -1,71 +1,117 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styled from "@emotion/styled";
 
+import PostSelect from "@/widget/postSelect/PostSelect";
+import ImageUpload from "@/widget/imageUpload/ui/ImageUpload";
 import TextFieldLabel from "@/shared/ui/textField/ui/TextFieldLabel";
 import PasswordTextField from "@/shared/ui/textField/ui/PasswordTextField";
+import Button from "@/shared/styles/ui/Button";
+import useSignUp from "@/pages/signUp/model/useSignUp";
+
+import useChurchCreate from "../model/useChurchCreate";
+import useChurchSetUserId from "../model/useChurchSetUserId";
+import { CHURCH_CREATE_PAGE_CONTEXT } from "../config/context";
+import churchErrorScheme from "../config/churchErrorScheme";
+import { ChurchCreateInputInfo } from "../interface";
 import { useAlert } from "@/shared/ui/confirm/model/useAlert";
 
-import Button from "@/shared/styles/ui/Button";
-import churchErrorScheme from "../config/churchErrorScheme";
-
-import {
-  CHURCH_CREATE_FAIL_MSG,
-  CHURCH_CREATE_PAGE_CONTEXT,
-  CHURCH_CREATE_SUCCESS_MSG,
-} from "../config/context";
-import { ChurchCreateInputInfo } from "../interface";
-import PostSelect from "@/widget/postSelect/PostSelect";
-import useChurchCreate from "../model/useChurchCreate";
-import ImageUpload from "@/widget/imageUpload/ui/ImageUpload";
-
 const ChurchCreatePage = () => {
-  const createMutateChurch = useChurchCreate();
+  const { showAlert } = useAlert();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<ChurchCreateInputInfo>({
+  const createChurchMutation = useChurchCreate();
+
+  const addAdminSignupMutation = useSignUp();
+
+  const updateChurchAdminMutation = useChurchSetUserId();
+
+  const churchForm = useForm<ChurchCreateInputInfo>({
     resolver: yupResolver(churchErrorScheme),
   });
 
-  const { showAlert } = useAlert();
+  const valuePlace = churchForm.watch("space");
 
-  const valuePlace = watch("space");
-
-  const valueLogo = watch("logo") ?? null;
+  const valueLogo = churchForm.watch("logo") ?? null;
 
   const handlePostSelect = (value: string) => {
-    setValue("space", value);
+    churchForm.setValue("space", value);
   };
 
   const handleLogoUpload = (url: string) => {
-    setValue("logo", url);
+    churchForm.setValue("logo", url);
   };
 
-  const handleCreateChurchSubmit = handleSubmit((inputInfo) => {
-    createMutateChurch.mutate(
-      { dto: inputInfo },
+  const handleCreateChurchSubmit = churchForm.handleSubmit((inputInfo) => {
+    const { name, space, logo, adminName, term, email, password } = inputInfo;
+
+    createChurchMutation.mutate(
       {
-        onSuccess: () => {
-          showAlert({
-            type: "success",
-            title: CHURCH_CREATE_SUCCESS_MSG.TITLE,
-            content: CHURCH_CREATE_SUCCESS_MSG.CONTENT,
-          });
+        name,
+        space,
+        logo: logo ?? "",
+      },
+      {
+        onSuccess(churchData) {
+          addAdminSignupMutation.mutate(
+            {
+              email,
+              password,
+              term,
+              name: adminName,
+            },
+            {
+              onSuccess(userData) {
+                updateChurchAdminMutation.mutate(
+                  {
+                    churchId: churchData.id,
+                    userId: userData.uid,
+                    userData: {
+                      name: adminName,
+                      term,
+                      email,
+                    },
+                  },
+                  {
+                    onSuccess() {
+                      showAlert({
+                        type: "success",
+                        title: "교회 관리자 등록 성공",
+                        content: "교회 관리자 등록 성공했습니다.",
+                        rightBtnOnClick: () => window.close(),
+                      });
+                    },
+                    onError(error: Error) {
+                      showAlert({
+                        type: "error",
+                        title: "교회 관리자 등록 오류",
+                        content: error.message,
+                      });
+                    },
+                  }
+                );
+              },
+              onError(error: Error) {
+                showAlert({
+                  type: "error",
+                  title: "교회 관리자 가입 오류",
+                  content: error.message,
+                });
+              },
+            }
+          );
         },
-        onError: (error: Error) => {
+        onError(error: Error) {
           showAlert({
             type: "error",
-            title: CHURCH_CREATE_FAIL_MSG.TITLE,
+            title: "교회 등록 오류",
             content: error.message,
           });
         },
       }
     );
+
+    window.close();
   });
 
   return (
@@ -74,55 +120,70 @@ const ChurchCreatePage = () => {
       <SignupForm onSubmit={handleCreateChurchSubmit}>
         <TextFieldLabel
           label={CHURCH_CREATE_PAGE_CONTEXT.NAME_INPUT_LABEL}
-          {...register("name", { required: true })}
+          {...churchForm.register("name", { required: true })}
           placeholder={CHURCH_CREATE_PAGE_CONTEXT.NAME_PLACEHOLDER}
           inputSize="md"
           state="error"
-          message={errors.email?.message}
+          message={churchForm.formState.errors.name?.message}
         />
         <PostSelect
           value={valuePlace}
           onSelect={handlePostSelect}
           label={CHURCH_CREATE_PAGE_CONTEXT.SPACE_INPUT_LABEL}
           placeholderText={CHURCH_CREATE_PAGE_CONTEXT.SPACE_PLACEHOLDER}
-          message={errors.space?.message}
+          message={churchForm.formState.errors.space?.message}
           state="error"
           isRequire
         />
         <ImageUpload
           label={CHURCH_CREATE_PAGE_CONTEXT.LOGO_INPUT_LABEL}
           state="error"
-          message={errors.email?.message}
           uploadUrl={valueLogo}
           onUpload={handleLogoUpload}
         />
         <TextFieldLabel
+          label={"관리자 이름"}
+          {...churchForm.register("adminName", { required: true })}
+          placeholder={"관리자 이름를 입력해주세요."}
+          inputSize="md"
+          state="error"
+          message={churchForm.formState.errors.name?.message}
+        />
+        <TextFieldLabel
+          label={"관리자 기수"}
+          {...churchForm.register("term", { required: true })}
+          placeholder={"관리자 기수를 입력해주세요."}
+          inputSize="md"
+          state="error"
+          message={churchForm.formState.errors.term?.message}
+          type="number"
+        />
+        <TextFieldLabel
           label={CHURCH_CREATE_PAGE_CONTEXT.ID_INPUT_LABEL}
-          {...register("email", { required: true })}
+          {...churchForm.register("email", { required: true })}
           placeholder={CHURCH_CREATE_PAGE_CONTEXT.ID_PLACEHOLDER}
           inputSize="md"
           state="error"
-          message={errors.email?.message}
+          message={churchForm.formState.errors.email?.message}
         />
         <PasswordTextField
           label={CHURCH_CREATE_PAGE_CONTEXT.PASSWORD_INPUT_LABEL}
-          {...register("password", { required: true })}
+          {...churchForm.register("password", { required: true })}
           placeholder={CHURCH_CREATE_PAGE_CONTEXT.PASSWORD_PLACEHOLDER}
           type="password"
           inputSize="md"
           state="error"
-          message={errors.password?.message}
+          message={churchForm.formState.errors.password?.message}
         />
         <PasswordTextField
           label={CHURCH_CREATE_PAGE_CONTEXT.PASSWORD_RECEHCK_INPUT_LABEL}
-          {...register("passwordReCheck", { required: true })}
+          {...churchForm.register("passwordReCheck", { required: true })}
           placeholder={CHURCH_CREATE_PAGE_CONTEXT.PASSWORD_RECEHCK_PLACEHOLDER}
           type="password"
           inputSize="md"
           state="error"
-          message={errors.passwordReCheck?.message}
+          message={churchForm.formState.errors.passwordReCheck?.message}
         />
-
         <Button type="submit" size="md" palette="secondary">
           {CHURCH_CREATE_PAGE_CONTEXT.FINISH_BTN}
         </Button>

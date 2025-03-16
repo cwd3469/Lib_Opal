@@ -1,32 +1,33 @@
-import { ChurchCreateInputInfo } from "../../interface";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { db, collection, addDoc } from "@/shared/firebase";
+import { UserInfo } from "@/pages/signUp/interface";
 
 type Params = {
-  dto: ChurchCreateInputInfo;
+  logo: string;
+  name: string;
+  space: string;
 };
 
 const collectionName = "church";
 
 const collectionDB = collection(db, collectionName);
 
-export async function createChurch({ dto }: Params) {
-  console.log(dto);
-  const { logo, name, space } = dto;
-  try {
-    const red = await addDoc(collectionDB, { logo, name, space });
-    console.log(red);
-    return red;
-    // // 소속된 사용자 추가 (초기 owner 설정)
-    // const memberRef = doc(
-    //   collection(db, `companies/${companyId}/members`),
-    //   ownerUid
-    // );
-    // await setDoc(memberRef, {
-    //   role: "admin",
-    // });
-
-    // console.log(`Company ${companyName} created with owner ${ownerUid}`);
-  } catch (error) {
-    console.error("Error creating company:", error);
-  }
+export async function createChurch(params: Params) {
+  const { logo, name, space } = params;
+  return await addDoc(collectionDB, { logo, name, space });
 }
+
+export async function deleteChurch(id: string) {
+  const churchRef = doc(db, collectionName, id);
+  return await deleteDoc(churchRef);
+}
+
+export const setChurchUserId = async (params: {
+  churchId: string;
+  userId: string;
+  userData: UserInfo;
+}) => {
+  const { churchId, userId, userData } = params;
+  console.log(params);
+  return await setDoc(doc(db, `church/${churchId}/users`, userId), userData);
+};

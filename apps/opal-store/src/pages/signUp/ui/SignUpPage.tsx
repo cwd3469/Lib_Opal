@@ -18,14 +18,7 @@ import {
 import { signupErrorScheme } from "../config/signupErrorScheme";
 import useGetChurchDoc from "../model/useGetChurchDoc";
 import useSignUp from "../model/useSignUp";
-import { ChurchGetReq } from "../interface";
-
-type SignUpInputInfo = {
-  email: string;
-  password: string;
-  passwordReCheck: string;
-  churchUid: string;
-};
+import { ChurchGetReq, SignUpInputInfo } from "../interface";
 
 const LoginPage = () => {
   const { data: allChurchList } = useGetChurchDoc();

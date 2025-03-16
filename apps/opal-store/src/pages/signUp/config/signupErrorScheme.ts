@@ -18,5 +18,7 @@ export const signupErrorScheme = yup
       .oneOf([yup.ref("password"), undefined], "비밀번호가 일치하지 않습니다.")
       .required("비밀번호 확인은 필수 입력 항목입니다."),
     churchUid: yup.string().required("교회 항목은 필수 입력 항목입니다."),
+    name: yup.string().required("교회 항목은 필수 입력 항목입니다."),
+    term: yup.number().required("기수는 필수 입력 항목입니다. "),
   })
   .required();
